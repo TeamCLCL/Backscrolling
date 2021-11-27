@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="shortcut icon" href="images/favicon.ico" >
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/common.css">
+
+
+</head>
+<body>
+    <script src="js/lib/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="js/logonOperation.js" type="text/javascript"></script>
+
+    <section class="shortcut">
+        <div class="w">
+            <div class="lefts">
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                </ul>
+            </div>
+            <div class="rights">
+                <ul>
+                    <li><a href="#">我的收藏</a></li>
+                    <li></li>
+                    <li><a href="">浏览历史</a></li>
+                    <li></li>
+                    <li><a href="person.html">个人信息</a></li>
+                    <li></li>
+                    <li>网站导航</li>
+                 </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="w">
+        <header></header>
+        <div class="registerarea">
+            <h3>登录
+                <div class="login">我没有账号，去<a href="logon.html">注册</a></div>
+            </h3>
+
+            <div class="regform">
+                <form action="">
+                    <ul>
+                        <li><label>用户名：</label>
+                            <input id="user"  type="text" ><p id="userMsg"></p></li>
+
+                        <li><label>登录密码：</label>
+                            <input id="password"  type="password" ><p id="pwdMsg"></p></li>
+
+                        <li>
+                            <input class="submitBtn" id="submitBtn" type="button" value="登录">
+                        </li>
+                        
+                        <li>
+                            <a href="forgetpassword.html" class="forget">忘记密码</a>
+                        </li> 
+                        <li>
+                            <div id="idBtn" class="change" style="cursor:pointer;"  onmouseover="this.style.color='rgb(209, 61, 16)'" onmouseout="this.style.color='rgb(102, 102, 102)'">管理员登录</div>
+                        </li>
+                            
+                        
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer w">
+            <ul>
+                <li class="wrapper">关于我们
+                    <p class="tooltip">本网站是我们广工f4的团队合作项目</p>
+                </li>
+                <li></li>
+                <li class="wrapper">联系我们
+                    <p class="tooltip">vx....</p>
+                </li>
+                <li></li>
+                <li class="wrapper">联系管理员
+                    <p class="tooltip">qq....</p>
+             </ul>
+        </footer>
+    </div>
+</body>
+
+
+
+
+
+</html>
