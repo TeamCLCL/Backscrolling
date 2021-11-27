@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人注册</title>
+    <link rel="shortcut icon" href="images/favicon.ico" >
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/logon.css">
+    <link rel="stylesheet" href="css/common.css">
+
+</head>
+<body>
+    <script src="js/lib/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="js/logonOperation.js" type="text/javascript"></script>
+
+    <section class="shortcut">
+        <div class="w">
+            <div class="lefts">
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                </ul>
+            </div>
+            <div class="rights">
+                <ul>
+                    <li><a href="#">我的收藏</a></li>
+                    <li></li>
+                    <li><a href="">浏览历史</a></li>
+                    <li></li>
+                    <li><a href="person.html">个人信息</a></li>
+                    <li></li>
+                    <li>网站导航</li>
+                 </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="w">
+        <header></header>
+        <div class="registerarea">
+            <h3>注册新用户
+                <div class="login">已有账号，去<a href="login.html">登录</a></div>
+            </h3>
+            <div class="regform">
+                <form action="">
+                    <ul>
+                        
+                        <li><label for="">用户名：</label>
+                            <input id="user"  type="text" > <p id="userMsg"></p></li>
+
+                        <li><label for="">邮箱账号：</label>
+                            <input id="email"  type="text" > <p id="emailMsg"></p></li>
+
+                        <li><label for="">登录密码：</label>
+                            <input id="password"  type="password" > <p id="pwdMsg"></p></li>
+
+                        <li><label for="">确认密码：</label>
+                            <input id="password2"  type="password" > <p id="pwdMsg2"></p></li>
+
+                        <li><label for="">邮件验证码：</label>
+                            <input class="checkcode" id="checkcode" type="text">
+                            <input class="code" type="button"  value="发送验证码" id="send">
+                            <label id="checkcode_trip"> </label> 
+                            </li> 
+                            
+                        <li>
+                            <input type="submit" class="btn"  value="完成注册" id="regBtn">
+                        </li> 
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <footer class="footer w">
+            <ul>
+                <li class="wrapper">关于我们
+                    <p class="tooltip">本网站是我们广工f4的团队合作项目</p>
+                </li>
+                <li></li>
+                <li class="wrapper">联系我们
+                    <p class="tooltip">vx....</p>
+                </li>
+                <li></li>
+                <li class="wrapper">联系管理员
+                    <p class="tooltip">qq....</p>
+             </ul>
+        </footer>
+    </div>
+</body>
+
+
+
+
+
+</html>
