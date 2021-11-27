@@ -18,15 +18,15 @@
     <param-value>/c3p0-config.xml</param-value>
   </context-param>
 
-  <!-- 过滤器(拦截未登录时，访问除了欢迎页，登录页，注册页外的其他资源文件) -->
-  <!--<filter>
+   过滤器(拦截未登录时，访问除了欢迎页，登录页，注册页外的其他资源文件)
+  <filter>
     <filter-name>GYWFilter</filter-name>
     <filter-class>com.web.filter.GYWFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>GYWFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>-->
+  </filter-mapping>
 
   <!-- 发送电子邮件 -->
   <servlet>
@@ -78,6 +78,7 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
 
+  <!-- 忘记密码 -->
   <servlet>
     <servlet-name>ResetServlet</servlet-name>
     <servlet-class>com.web.servlet.ResetServlet</servlet-class>
