@@ -1,0 +1,148 @@
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* 头部 */
+header {
+    margin-top: 20px;
+    height: 2px;
+    border-bottom: 2px solid rgb(209, 61, 16);
+}
+
+/* 登录主体 */
+.registerarea {
+    height: 650px;
+    border: 1px solid #ccc;
+}
+
+.registerarea h3 {
+    height: 42px;
+    border-bottom: 1px solid #ccc;
+    background-color: #ececec;
+    line-height: 42px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.login {
+    float: right;
+    font-size: 14px;
+}
+
+.login a {
+    color: red;
+}
+
+.regform {
+    width: 800px;
+    margin: 150px 380px 100px;
+}
+
+.regform ul li label {
+    display: inline-block;
+    width: 88px;
+    text-align: right;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.regform ul li .code{
+    outline: none;
+    margin-left: 150px;
+    padding-right: 10px;
+}
+
+.regform ul li input {
+    width: 242px;
+    height: 37px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+}
+
+.regform ul li{
+    margin-bottom: 20px;
+}
+
+.regform ul li .submitBtn {
+    /*position: center;*/
+/*    top: 400px;
+    left: 600px;
+    width: 80px;
+    height: 30px;
+    padding-right: 10px;*/
+
+    width: 242px;
+    height: 34px;
+    background-color: #c81623;
+    font-size: 14px;
+    color:#f1f1f1;
+    padding-right: 10px;
+    margin: 20px 0 0 92px;
+
+}
+
+.regform ul .forget {
+    float: left;
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 94px;
+    margin-right: 50px;
+    padding-right: 10px;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.regform ul li .change {
+    float: left;
+    width: 100px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-right: 10px;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+
+/* 提示是否输入正确格式 */
+
+.regform ul li p{
+    float:right;
+    width: 300px;
+    padding-top: 8px;
+    margin-right: 140px;
+    color: red;
+    font-size: 14px;
+    font-weight: initial;
+}
+
+c {
+    margin-left: 20px;
+    color: rgb(0, 212, 0);
+    font-size: 16px;
+    font-weight: initial;
+}
+
+b {
+    margin-left: 20px;
+    color: red;
+    font-size: 16px;
+    font-weight: initial;
+}
+
+
+.submitBtn {
+    width: 300px;  
+    height: 34px;
+    background-color: #c81623;
+    font-size: 14px;
+    color:#f1f1f1;
+    padding-right: 10px;
+}
+
+
+
+

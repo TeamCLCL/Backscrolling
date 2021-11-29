@@ -1,0 +1,56 @@
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* 头部 */
+header {
+    margin-top: 20px;
+    height: 2px;
+    border-bottom: 2px solid rgb(209, 61, 16);
+}
+
+/* 个人主体 */
+.mainarea {
+    height: 650px;
+    border: 1px solid #ccc;
+    margin-bottom: 300px;
+}
+
+.mainarea h3 {
+    height: 42px;
+    border-bottom: 1px solid #ccc;
+    background-color: #ececec;
+    line-height: 42px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.headpic {
+    position: relative;
+    float: left;
+    border-right: 2px red solid;
+    width: 400px;
+    height: 607px;
+}
+
+.preview {
+    border: 1px solid #ccc;
+    width: 50%;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.information {
+    float: left;
+    width: 700px;
+    height: 607px;
+}
+
+
+
+
+
