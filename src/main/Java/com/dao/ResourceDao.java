@@ -10,10 +10,10 @@ import java.util.List;
  */
 public interface ResourceDao {
     /**
-     * 查询所有资源
+     * 查询所有资源（分页查询）
      * @return
      */
-    List<Resource> getAllResource();
+    List<Resource> getAllResource(Integer pageno, Integer pagesize);
 
     /**
      * 根据标题关键字模糊查询
@@ -58,9 +58,8 @@ public interface ResourceDao {
     void update(Integer id);
 
     /**
-     * 返回和name 相同的记录数
-     * @param id
+     * 获取总资源数
      * @return
      */
-    long getCountById(Integer id);
+    long getNum();
 }
