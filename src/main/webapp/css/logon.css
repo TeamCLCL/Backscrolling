@@ -44,10 +44,13 @@ header {
     display: inline-block;
     width: 88px;
     text-align: right;
+
+    font-size: 14px;
+    line-height: 14px;
 }
 
 .regform ul li .checkcode {
-    width: 90px;
+    width: 105px;
     
 }
 
@@ -78,6 +81,8 @@ header {
     margin-right: 100px;
 }
 
+
+
 .regform ul li  .p2 {
     width: 350px;
     margin-top: 5px;
@@ -93,11 +98,15 @@ c {
 
 b {
     margin-left: 20px;
-    color: red;
+    color: #ff0000;
     font-size: 16px;
     font-weight: initial;
 }
 
+.regform ul   .tips {
+    width: 350px;
+    margin-left: 115px;
+}
 
 
 .btn {
@@ -107,6 +116,6 @@ b {
     font-size: 14px;
     color:#f1f1f1;
     padding-right: 10px;
-    margin: 50px 0 0 90px;
+    margin: 40px 0 0 90px;
 }
 

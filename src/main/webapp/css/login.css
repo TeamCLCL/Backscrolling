@@ -44,6 +44,8 @@ header {
     display: inline-block;
     width: 88px;
     text-align: right;
+    font-size: 16px;
+    line-height: 16px;
 }
 
 .regform ul li .code{
@@ -64,12 +66,20 @@ header {
 }
 
 .regform ul li .submitBtn {
-    position: absolute;
-    top: 400px;
-    left: 712px;
+    /*position: center;*/
+/*    top: 400px;
+    left: 600px;
     width: 80px;
     height: 30px;
+    padding-right: 10px;*/
+
+    width: 242px;
+    height: 34px;
+    background-color: #c81623;
+    font-size: 14px;
+    color:#f1f1f1;
     padding-right: 10px;
+    margin: 20px 0 0 92px;
 
 }
 
@@ -77,20 +87,23 @@ header {
     float: left;
     width: 100px;
     height: 40px;
-    margin-top: 80px;
+    margin-top: 20px;
     margin-left: 94px;
     margin-right: 50px;
     padding-right: 10px;
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 14px;
 }
 
 .regform ul li .change {
     float: left;
     width: 100px;
     height: 40px;
-    margin-top: 80px;
+    margin-top: 20px;
+    margin-left: 20px;
     padding-right: 10px;
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 14px;
 }
 
 
