@@ -42,9 +42,9 @@ public class LogonServlet extends HttpServlet {
         User user = new User(u,password,email);
         // 注册用户
         if (new UserDaoImpl().logon(user) == 1) {
-            out.print("[{logonSuccess : true}]");
+            out.print("{logonSuccess : true}");
         }else{
-            out.print("[{logonSuccess : false}]");
+            out.print("{logonSuccess : false}");
         }
     }
 }

@@ -25,9 +25,9 @@ public class CheckEmailServlet extends HttpServlet {
 
         // 判断邮箱是否重复
         if (new UserDaoImpl().emailCheck(email) != 0) {
-            out.print("[{emailRepeat : true}]");
+            out.print("{emailRepeat : true}");
         }else{
-            out.print("[{emailRepeat : false}]");
+            out.print("{emailRepeat : false}");
         }
     }
 }

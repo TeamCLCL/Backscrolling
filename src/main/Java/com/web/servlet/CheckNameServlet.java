@@ -22,9 +22,9 @@ public class CheckNameServlet extends HttpServlet {
         String user = request.getParameter("user");
         // 判断用户名是否重复
         if (new UserDaoImpl().nameCheck(user) != 0) {
-            out.print("[{nameRepeat : true}]");
+            out.print("{nameRepeat : true}");
         }else{
-            out.print("[{nameRepeat : false}]");
+            out.print("{nameRepeat : false}");
         }
     }
 }
