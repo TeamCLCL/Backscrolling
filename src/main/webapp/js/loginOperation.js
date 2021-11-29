@@ -10,7 +10,7 @@ $(function(){
 	$("#idBtn").on("click",function(){
 		//identity为0表示普通用户
 		identity = (identity == 0) ? 1 : 0;
-		$("#idBtn").val((identity == 0) ? "管理员登陆" : "用户登陆");
+		$("#idBtn").text((identity == 0) ? "管理员登陆" : "用户登陆");
 		$("#user").val((identity == 0) ? "请输入用户名或邮箱" : "请输入管理员账号");
 		$("p").text("");
 		$(":password").val("");
@@ -78,22 +78,22 @@ $(function(){
 			//表示账号或密码没有正确填写
 			alert("请正确填写账号或密码");
 		}else{
-			var data = [{
+			var data = {
 				"identity":identity,
 				"type":type,
 				"user":$("#user").val().trim(),
-				"password":pwd.trim()}];
+				"password":pwd.trim()};
 			$.post("login",data,function(resq){
 				eval("var json = " + resq);
 				if(!json.loginSuccess) {
 					//表示登陆失败
 					alert("账号或密码错误，请重新登陆");
+				} else {
+					window.location = "index.html";
 				}
 			},"text");
 			//alert("登陆中...身份为"+identity+"账号类型为"+type+"，账号为"+$("#user").val().trim()+"，密码为"+pwd.trim());
 		}
 	})
-	
-	//
 })
 

@@ -57,6 +57,7 @@ $(function(){
 		if(this.value.trim() == "请输入邮箱") {
 			this.value = "";
 		}
+		$("#send").attr("disabled",true);
 	})
 	
 	// 验证邮箱
@@ -70,6 +71,7 @@ $(function(){
 			tripw("emailMsg", "邮箱格式不正确");
 			finEmail = "";
 		} else {
+			tripw("emailMsg","正在检测邮箱...");
 			//表示邮箱合法，接下来验证该邮箱是否已被绑定
 			$.post("checkemail",{"email":email},function(resq){
 				eval("var json = " + resq);
@@ -81,6 +83,7 @@ $(function(){
 						finEmail = "";
 					}else {
 						tripr("emailMsg", "√");
+						$("#send").attr("disabled",false);
 						finEmail = email;
 					}
 			},"text");
@@ -93,11 +96,11 @@ $(function(){
 		var password = this.value;
 		var c = /^([a-zA-Z0-9]){8,16}$/;
 		if(password == "") {
-		 tripw("pwdMsg", "密码不能为空");
+		 	tripw("pwdMsg", "密码不能为空");
 		} else if (!c.test(password)) {
-		 tripw("pwdMsg", "密码长度为8-16位且只含有英语字母和数字"); 
+		 	tripw("pwdMsg", "密码长度为8-16位且只含有英语字母和数字");
 		} else {
-		 tripr("pwdMsg", "√")
+		 	tripr("pwdMsg", "√")
 		}
 		finpwd = "";
 	   })
@@ -106,11 +109,11 @@ $(function(){
 	   $("#password2").on("focus",function(){
 		
 		if ($("#password").val() == ""){
-		 tripw("pwdMsg2", "请先设置密码");
+		 	tripw("pwdMsg2", "请先设置密码");
 		} else if($("#pwdMsg").text() != "√") {
-		 tripw("pwdMsg2", "请按要求设置密码");
+		 	tripw("pwdMsg2", "请按要求设置密码");
 		} else {
-		 tripw("pwdMsg2", "");
+		 	tripw("pwdMsg2", "");
 		}
 		finpwd = "";
 	   })
@@ -121,10 +124,10 @@ $(function(){
 		var password2 = this.value;
 		if ($("#pwdMsg").text() == "√") {
 		 if(password != password2){
-		  tripw("pwdMsg2", "两次密码不一致");
+			 tripw("pwdMsg2", "两次密码不一致");
 		  finpwd = "";
 		 } else {
-		  tripr("pwdMsg2", "√");
+		 	tripr("pwdMsg2", "√");
 		  finpwd = password;
 		 }
 		} 
@@ -136,7 +139,7 @@ $(function(){
 	  // 只有在邮箱可用的情况下才能发送验证码
 	  if (finEmail != "") {
 		//向后台发送【发出验证码】的请求，并从后台的响应中得到验证码
-		$.post("url",{"email":finEmail},function(resq){
+		$.post("sendmail",{"email":finEmail},function(resq){
 			eval("var json = " + resq);
 			checkCode = json.checkCode;
 		},"text");
@@ -144,7 +147,7 @@ $(function(){
 		//开启计时器
 		DownToZero();
 	  } else {
-		tripw("codeMsg","请保证邮箱的正确性");
+		  tripw("codeMsg","请保证邮箱的正确性");
 	  }
 	})
 	
@@ -172,12 +175,12 @@ $(function(){
 			//接下来检查验证码是否正确
 			if ($("#checkcode").val() == checkCode && checkCode != "") {
 				//由于验证码会在倒计时结束时自动清空，因此不用考虑验证码是否失效
-				var data = [{
+				var data = {
 					"user":finUser,
 					"password":finpwd,
 					"email":finEmail
-				}];
-				$.post("url",data,function(resq){
+				};
+				$.post("logon",data,function(resq){
 					eval("var json = " + resq);
 					if (json.logonSuccess) {
 						alert("注册成功");

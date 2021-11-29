@@ -12,13 +12,15 @@ $(function(){
 	var checkCode = "";
 	var finEmail = "";
 	var finpwd = "";
-	var send=$("#send").get(0)	//获取发送验证码按钮
+	var send=$("#send").get(0);	//获取发送验证码按钮
 	var times=120;   			//设置倒计时的初值
 	
 	$("#email").on("focus",function(){
 		if(this.value.trim() == "请输入邮箱") {
 			this.value = "";
 		}
+		$("#send").attr("disabled",true);
+		$("#send");
 	})
 	
 	// 验证邮箱
@@ -32,6 +34,7 @@ $(function(){
 			tripw("emailMsg", "邮箱格式不正确");
 			finEmail = "";
 		} else {
+			tripw("emailMsg","正在检测邮箱...");
 			//表示邮箱合法，接下来验证该邮箱是否存在于数据库中
 			$.post("checkemail",{"email":email},function(resq){
 				eval("var json = " + resq);
@@ -40,6 +43,7 @@ $(function(){
 					//false则为不重复，表示该邮箱不存在
 					if (json.emailRepeat) {
 						tripr("emailMsg", "√");
+						$("#send").attr("disabled",false);
 						finEmail = email;
 					}else {
 						tripw("emailMsg", "该邮箱未被绑定，请更换邮箱");
@@ -52,19 +56,17 @@ $(function(){
 	
 	//发送验证码
 	$("#send").on("click",function(){
-	  // 只有在邮箱可用的情况下才能发送验证码
-	  if (finEmail != "") {
-		//向后台发送【发出验证码】的请求，并从后台的响应中得到验证码
-		$.post("sendmail",{"email":finEmail},function(resq){
-			eval("var json = " + resq);
-			checkCode = json.checkCode;
-		},"text");
-		
-		//开启计时器
-		DownToZero();
-	  } else {
-		tripw("codeMsg","请保证邮箱的正确性");
-	  }
+		// 只有在邮箱可用的情况下才能发送验证码
+		if (finEmail != "") {
+			//向后台发送【发出验证码】的请求，并从后台的响应中得到验证码
+			$.post("sendmail",{"email":finEmail},function(resq){
+				eval("var json = " + resq);
+				checkCode = json.checkCode;
+			},"text");
+
+			//开启计时器
+			DownToZero();
+		}
 	})
 	
 	//用于计时的函数
