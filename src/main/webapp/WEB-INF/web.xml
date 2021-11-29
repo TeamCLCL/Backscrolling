@@ -1,8 +1,11 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
 
-<web-app>
+<web-app version="4.0"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+
   <display-name>Archetype Created Web Application</display-name>
 
   <!-- 欢迎页 -->
@@ -12,21 +15,51 @@
     <welcome-file>logon.html</welcome-file>
   </welcome-file-list>
 
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ico</url-pattern>
+  </servlet-mapping>
+
   <!-- 数据库连接池配置信息 -->
   <context-param>
     <param-name>javax.faces.CONFIG_FILES</param-name>
     <param-value>/c3p0-config.xml</param-value>
   </context-param>
 
-   过滤器(拦截未登录时，访问除了欢迎页，登录页，注册页外的其他资源文件)
-  <filter>
+  <!-- 过滤器(拦截未登录时，访问除了欢迎页，登录页，注册页外的其他资源文件) -->
+  <!--<filter>
     <filter-name>GYWFilter</filter-name>
     <filter-class>com.web.filter.GYWFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>GYWFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping>-->
 
   <!-- 发送电子邮件 -->
   <servlet>
