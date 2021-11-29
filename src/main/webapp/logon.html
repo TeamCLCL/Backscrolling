@@ -47,26 +47,27 @@
                 <form action="">
                     <ul>
                         
-                        <li><label for="">用户名：</label>
-                            <input id="user"  type="text" > <p id="userMsg"></p></li>
+                        <li><label>用户名：</label>
+                            <input id="user"  type="text" placeholder="请输入用户名"> <p id="userMsg"></p></li>
 
-                        <li><label for="">邮箱账号：</label>
-                            <input id="email"  type="text" > <p id="emailMsg"></p></li>
+                        <li><label>邮箱：</label>
+                            <input id="email"  type="text" placeholder="请输入有效邮箱"> <p id="emailMsg"></p></li>
 
-                        <li><label for="">登录密码：</label>
-                            <input id="password"  type="password" > <p id="pwdMsg"></p></li>
+                        <li><label>密码：</label>
+                            <input id="password"  type="password" placeholder="请设置密码"> <p id="pwdMsg"></p></li>
 
-                        <li><label for="">确认密码：</label>
-                            <input id="password2"  type="password" > <p id="pwdMsg2"></p></li>
+                        <li><label>确认密码：</label>
+                            <input id="password2"  type="password" placeholder="请再次输入密码"> <p id="pwdMsg2"></p></li>
 
-                        <li><label for="">邮件验证码：</label>
-                            <input class="checkcode" id="checkcode" type="text">
-                            <input class="code" type="button"  value="发送验证码" id="send">
-                            <label id="checkcode_trip"> </label> 
-                            </li> 
-                            
+                        <li><label>验证码：</label>
+                            <input class="checkcode" id="checkcode" type="text" placeholder="请输入验证码">
+                            <input class="code" type="button"  value="发送验证码" id="send" disabled="true">
+                        </li>
+
+                        <div class="tips" ><p id="codeMsg"> </p></div>
+
                         <li>
-                            <input type="submit" class="btn"  value="完成注册" id="regBtn">
+                            <input type="button" class="btn"  value="完成注册" id="regBtn">
                         </li> 
                     </ul>
                 </form>
