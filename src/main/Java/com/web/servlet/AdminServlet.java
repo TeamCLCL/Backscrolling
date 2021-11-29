@@ -8,57 +8,49 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * 处理用户请求
+ * 处理管理员请求
  */
-public class UserServlet extends HttpServlet {
+public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         // 判断请求类型
+    }
+
+    /**
+     * 管理员查看资源（分页）
+     */
+    private void selectResource(){
 
     }
 
     /**
-     * 用户以关键字检索资源
+     * 管理员插入资源
      */
-    private void selectByKeyword(){
+    private void insertResource(){
 
     }
 
     /**
-     * 用户以资源类别检索资源
+     * 管理员删除资源
      */
-    private void selectByType(){
+    private void deleteResource(){
 
     }
 
     /**
-     * 用户获取自己所收藏资源
+     * 管理员修改资源
      */
-    private void selectUserCollects(){
+    private void updateResource(){
 
     }
 
     /**
-     * 用户收藏资源
+     * 管理员查看用户
      */
-    private void collect(){
-
-    }
-
-    /**
-     * 用户移除收藏资源
-     */
-    private void removeCollect(){
-
-    }
-
-    /**
-     * 用户修改个人信息
-     */
-    private void update(){
+    private void selectUser(){
 
     }
 }

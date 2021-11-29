@@ -24,15 +24,6 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        // 确定用户是否已登录
-        HttpSession s = request.getSession(false);
-        if(s != null){
-            if(s.getAttribute("user") != null || s.getAttribute("admin") != null) {
-                out.print("{}");
-            }else{
-                out.print("{}");
-            }
-        }
 
         // 用户为0，管理员为1
         String identity = request.getParameter("identity");
@@ -72,8 +63,6 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 // 将用户登录状态存入session范围
                 session.setAttribute("user", dbUser);
-                // 重定向到主页面
-                // response.sendRedirect(request.getContextPath() + "/index.html");
             }else{
                 out.print("{loginSuccess : false}");
             }
@@ -91,8 +80,6 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 // 将用户登录状态存入session范围
                 session.setAttribute("admin", dbAdmin);
-                // 重定向到主页面
-                // response.sendRedirect(request.getContextPath() + "/index.html");
             }else{
                 out.print("{loginSuccess : false}");
             }
