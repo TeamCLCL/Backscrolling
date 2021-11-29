@@ -22,7 +22,7 @@ public class GYWFilter implements Filter {
             chain.doFilter(request,response);
             return;
         }
-        // 如果不是请求和登录相关的资源文件，则需验证登录状态
+        // 如果不是请求和登录、注册、忘记密码、欢迎页相关的资源文件，则需验证登录状态
         // 获取session对象
         HttpSession session = req.getSession(false);
         if(session != null && (session.getAttribute("user") != null || session.getAttribute("admin") != null)) {

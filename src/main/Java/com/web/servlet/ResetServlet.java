@@ -40,9 +40,9 @@ public class ResetServlet extends HttpServlet {
         User user = new User(null, password, email);
         // 更新密码
         if(new UserDaoImpl().resetPassword(user) == 1){
-            out.print("[{resetSuccess : true}]");
+            out.print("{resetSuccess : true}");
         }else{
-            out.print("[{resetSuccess : false}]");
+            out.print("{resetSuccess : false}");
         }
     }
 }

@@ -67,7 +67,7 @@ public class SendMailServlet extends HttpServlet {
 
             // 发送验证码给前端
             String checkCode = message.getContent().toString().split(" ")[1];
-            out.print("[{checkCode : " + checkCode + "}]");
+            out.print("{checkCode : \"" + checkCode + "\"}");
 
             ts.close();
         } catch (GeneralSecurityException e) {
@@ -106,12 +106,9 @@ public class SendMailServlet extends HttpServlet {
         // 指明邮件的收件人，发件人和收件人如果是一样的，那就是自己给自己发
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
         // 邮件的标题
-        message.setSubject("Test");
+        message.setSubject("GYW用户注册");
         // 邮件的文本内容
-        message.setContent("您的账号注册验证码为(两分钟内有效): " + str + " ,请勿回复此邮箱", "text/html;charset=UTF-8");
-
-
-
+        message.setContent("您的账号注册验证码为(两分钟内有效): " + str + " <br><br>请勿回复此邮箱，谢谢！", "text/html;charset=UTF-8");
         // 返回创建好的邮件对象
         return message;
     }

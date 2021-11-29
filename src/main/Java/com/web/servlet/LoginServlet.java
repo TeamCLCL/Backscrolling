@@ -24,27 +24,35 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        // 确定用户是否已登录
+        HttpSession s = request.getSession(false);
+        if(s != null){
+            if(s.getAttribute("user") != null || s.getAttribute("admin") != null) {
+                out.print("{}");
+            }else{
+                out.print("{}");
+            }
+        }
 
         // 用户为0，管理员为1
         String identity = request.getParameter("identity");
         // 密码
         String password = request.getParameter("password");
-        // 密码加密
-        try {
-            // 确定计算方法
-            MessageDigest  md5 = MessageDigest.getInstance("MD5");
-            BASE64Encoder base64en = new BASE64Encoder();
-            // 加密后的密码
-            password = base64en.encode(md5.digest(password.getBytes("utf-8")));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
         // 判断用户/管理员
         if("0".equals(identity)){
             // 用户
             // 用户登录使用的账号类型: 用户名/电子邮箱
             String accountType = request.getParameter("type");
+            // 密码加密
+            try {
+                // 确定计算方法
+                MessageDigest  md5 = MessageDigest.getInstance("MD5");
+                BASE64Encoder base64en = new BASE64Encoder();
+                // 加密后的密码
+                password = base64en.encode(md5.digest(password.getBytes("utf-8")));
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
             // 账号类型为用户名
             User user = null;
             if("username".equals(accountType)){
@@ -59,15 +67,15 @@ public class LoginServlet extends HttpServlet {
             // 判断登录是否成功
             User dbUser = new UserDaoImpl().loginCheck(user, accountType);
             if(dbUser != null){
-                out.print("[{loginSuccess : true}]");
+                out.print("{loginSuccess : true}");
                 // 获取session对象
                 HttpSession session = request.getSession();
                 // 将用户登录状态存入session范围
                 session.setAttribute("user", dbUser);
                 // 重定向到主页面
-                response.sendRedirect(request.getContextPath() + "/index.html");
+                // response.sendRedirect(request.getContextPath() + "/index.html");
             }else{
-                out.print("[{loginSuccess : false}]");
+                out.print("{loginSuccess : false}");
             }
         }else{
             // 管理员
@@ -78,15 +86,15 @@ public class LoginServlet extends HttpServlet {
             // 判断登录是否成功
             Admin dbAdmin = new AdminDaoImpl().loginCheck(admin);
             if(dbAdmin != null){
-                out.print("[{loginSuccess : true}]");
+                out.print("{loginSuccess : true}");
                 // 获取session对象
                 HttpSession session = request.getSession();
                 // 将用户登录状态存入session范围
                 session.setAttribute("admin", dbAdmin);
                 // 重定向到主页面
-                response.sendRedirect(request.getContextPath() + "/index.html");
+                // response.sendRedirect(request.getContextPath() + "/index.html");
             }else{
-                out.print("[{loginSuccess : false}]");
+                out.print("{loginSuccess : false}");
             }
         }
     }
