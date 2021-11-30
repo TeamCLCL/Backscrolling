@@ -1,7 +1,6 @@
 package com.web.servlet;
 
 import com.dao.impl.ResourceDaoImpl;
-import com.dao.impl.UserDaoImpl;
 import com.model.CriteriaResource;
 import com.model.Page;
 import com.model.Resource;
