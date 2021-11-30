@@ -22,7 +22,7 @@ public class GYWFilter implements Filter {
         // 调用请求对象读取请求包中的URI，了解用户访问的资源文件是谁
         String uri = req.getRequestURI();
         // 如果本次请求资源文件与登录/注册/忘记密码/欢迎页相关，无条件放行
-        if(uri.contains("login") || uri.contains("Login") || uri.contains("logon") || uri.contains("Logon") || uri.contains("forget") || uri.contains("Reset") || "/GYW/".equals(uri) || uri.contains(".css") || uri.contains(".js") || uri.contains(".jpg") || uri.contains("png") || uri.contains(".ico") || uri.contains("check") || uri.contains("send") || uri.contains("Load")){
+        if(uri.contains("login") || uri.contains("Login") || uri.contains("logon") || uri.contains("Logon") || uri.contains("forget") || uri.contains("Reset") || "/GYW/".equals(uri) || uri.contains(".css") || uri.contains(".js") || uri.contains(".jpg") || uri.contains("png") || uri.contains(".ico") || uri.contains("check") || uri.contains("send") || uri.contains("load")){
             chain.doFilter(request,response);
             return;
         }
