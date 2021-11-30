@@ -21,7 +21,7 @@ header {
 /* 左边区域 */
 @font-face {
     font-family: 'iconfont';
-    src: url('../images/font/iconfont.ttf?t=1638208923673') format('truetype');
+    src: url('font/iconfont.ttf?t=1638208923673') format('truetype');
    }
 
 .iconfont {

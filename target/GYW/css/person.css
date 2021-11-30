@@ -17,40 +17,116 @@ header {
     margin-bottom: 300px;
 }
 
-.mainarea h3 {
-    height: 42px;
-    border-bottom: 1px solid #ccc;
-    background-color: #ececec;
-    line-height: 42px;
-    padding: 0 10px;
-    font-size: 18px;
-    font-weight: 400;
+
+/* 左边区域 */
+@font-face {
+    font-family: 'iconfont';
+    src: url('font/iconfont.ttf?t=1638208923673') format('truetype');
+   }
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.headpic {
-    position: relative;
+.index{
     float: left;
-    border-right: 2px red solid;
     width: 400px;
-    height: 607px;
+    height: 100%;
 }
 
-.preview {
-    border: 1px solid #ccc;
-    width: 50%;
-    height: 200px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
+.index .img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 80px;
+    margin-left: 38%;
 }
 
-.information {
+.index .list{
+    margin-top: 40px;
+}
+.index ul li{
+    margin-left: 70px;
+    width: 260px;
+    list-style: none;
+    border: 1px solid #000;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    margin-top: 30px;
+    border-radius: 20px;
+}
+.index ul li span{
+    margin-left: 60px;
+}
+.index ul li button{
+    background-color: #fff;
+    border-color: transparent;  
+    box-shadow:none;
+    outline: none; 
+    margin-left: 16px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.index ul li button:hover{
+    color: rgb(209, 61, 16);
+}
+
+.btn{
+    outline: none;
+    margin-top: 50px;
+    margin-left: 110px;
+    border: 1px solid #000;
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+/* 右边详细区域 */
+
+.information{
     float: left;
-    width: 700px;
-    height: 607px;
+    border-left: 2px solid rgb(209, 61, 16);
+    width: 790px;
+    height: 100%;
+    padding-top: 80px;
 }
 
+.message  li{
+    margin-top: 40px;
+    margin-left: 150px;
+    width: 260px;
+    list-style: none;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
 
+.star{
+    display: none; 
+    margin-top: 40px;
+    margin-left: 150px;
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
 
-
+.history{
+    display: none; 
+    margin-top: 40px;
+    margin-left: 150px;
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
 

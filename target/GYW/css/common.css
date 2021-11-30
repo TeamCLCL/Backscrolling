@@ -11,6 +11,11 @@
     background-color: #f1f1f1;
 }
 
+.welcome {
+    margin-left: 30px;
+    font-size: 16px;
+}
+
 .lefts{
     float: left;
 }
@@ -41,7 +46,7 @@
 
 /* 底部模块 */
 .footer{
-    margin-top: 50px;
+    margin-top: 220px;
     height: 100px;
     line-height: 100px;
     background-color: #f5f5f5;

@@ -200,45 +200,47 @@ header {
 
 .centent{
     margin-top: 160px;
-    width: 600px;
-    height: 200px;
+    width: 900px;
+    height: 900px;
     border: 2px solid red;
 }
 
-.centent li{
-    overflow: hidden;
-    width: 730px;
-    height: 180px;
+
+/* 换页 */
+.page-icon{
+    margin:80px 0 0 0;/*设置距离顶部20像素*/
+    font-size:0;/*修复行内元素之间空隙间隔*/
+    text-align:center;/*设置内容居中显示*/
 }
 
-.centent a{
-    text-decoration: none;
+.page-icon a,.page-disabled,.page-next{
+    border:1px solid #ccc;
+    border-radius:3px;
+    padding:4px 10px 5px;
+    font-size:14PX;
+    margin-right:10px;
 }
 
-.centent p{
-    overflow: hidden;
-    text-overflow:ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    color: #b0b0b0;
-    height: 108px;
-    margin-top: 20px;
-    padding-right: 20px;
-    text-indent: 2em;
+.page-icon a{
+    text-decoration:none;
+    color:#005aa0;
+}
+
+.page-current{
+    color:#ff6600;
+    padding:4px 10px 5px;
+    font-size:14PX;
+}
+
+.page-disabled{
+    color:#ccc;
+}
+
+.page-next i,.page-disabled i{
+    cursor:pointer;/*设置鼠标经过时的显示为小手状态*/
+    display:inline-block;
+    width:5px;
+    height:9px;
 }
 
 
-.cententimg{
-    padding-left: 20px;
-    padding-top: 20px;
-    width: 300px;
-    height: 200px;
-    float: left;
-
-}
-
-.centent:hover{
-    border-left: 3px solid rgb(0, 110, 255);
-    background-color: #eaf8ff;
-}

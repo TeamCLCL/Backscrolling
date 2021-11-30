@@ -45,6 +45,16 @@
     <url-pattern>*.ico</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ttf</url-pattern>
+  </servlet-mapping>
+
   <!-- 数据库连接池配置信息 -->
   <context-param>
     <param-name>javax.faces.CONFIG_FILES</param-name>
@@ -52,14 +62,14 @@
   </context-param>
 
   <!-- 过滤器(拦截未登录时，访问除了欢迎页，登录页，注册页外的其他资源文件) -->
-  <!--<filter>
+  <filter>
     <filter-name>GYWFilter</filter-name>
     <filter-class>com.web.filter.GYWFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>GYWFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>-->
+  </filter-mapping>
 
   <!-- 发送电子邮件 -->
   <servlet>
@@ -119,5 +129,36 @@
   <servlet-mapping>
     <servlet-name>ResetServlet</servlet-name>
     <url-pattern>/reset</url-pattern>
+  </servlet-mapping>
+
+  <!-- 主页面加载、退出登录 -->
+  <servlet>
+    <servlet-name>IndexLoadServlet</servlet-name>
+    <servlet-class>com.web.servlet.IndexLoadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexLoadServlet</servlet-name>
+    <url-pattern>/indexload</url-pattern>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+  <!-- 有关资源的操作(管理员对资源的操作) -->
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.web.servlet.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+
+  <!-- 有关用户的操作(用户对资源的操作、管理员对用户的操作) -->
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.web.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/user</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
     public static void main(String[] args) {
-        List<Resource> list1 = new ResourceDaoImpl().getAllResource();
+        List<Resource> list1 = new ResourceDaoImpl().getAllResource(0,10);
         for(Resource resource:list1){
             System.out.println(JsonUtil.toJson(resource));
         }
@@ -32,9 +32,9 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
      * @return
      */
     @Override
-    public List<Resource> getAllResource() {
-        String sql = "select id,title,link,collect from t_resource order by collect";
-        return getForBeanList(sql);
+    public List<Resource> getAllResource(Integer pageno, Integer pagesize) {
+        String sql = "select id,title,link,collect from t_resource order by collect limit ?,?";
+        return getForBeanList(sql, pageno-1, pagesize);
     }
 
     /**
@@ -103,11 +103,12 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
     }
 
     /**
-     * @param id
+     * 获取总资源数
      * @return
      */
     @Override
-    public long getCountById(Integer id) {
-        return 0;
+    public long getNum() {
+        String sql = "select count(*) from t_resource";
+        return getForValue(sql);
     }
 }

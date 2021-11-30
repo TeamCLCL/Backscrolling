@@ -89,7 +89,12 @@ $(function(){
 					//表示登陆失败
 					alert("账号或密码错误，请重新登陆");
 				} else {
-					window.location = "index.html";
+					//登陆成功则按身份跳转
+					if(identity == 0) {
+						window.location = "index.html";
+					} else {
+						window.location = "admin.html";
+					}
 				}
 			},"text");
 			//alert("登陆中...身份为"+identity+"账号类型为"+type+"，账号为"+$("#user").val().trim()+"，密码为"+pwd.trim());
