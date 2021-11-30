@@ -25,8 +25,6 @@ public class IndexLoadServlet extends HttpServlet {
 
         // 判断请求类型
         String type = request.getParameter("type");
-
-        System.out.println(type);
         if("indexload".equals(type)){
             // 主页面加载
             indexLoad(request,response);
