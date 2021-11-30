@@ -8,17 +8,17 @@ showResource = function(page) {
 	var resource = "<li>序号  资源  操作 当前收藏量</li>";
 	var datas = page.dataList;
 	for(var i = 0; i < datas.length; i++) {
-		resource += "<li>"+datas[i].id+"  <a href='"+datas[i].link+"'>"+datas[i].title+"</a>  "+"收藏"+"  "+datas[i].collect+"</li>";
+		resource += "<li>"+datas[i].id+"  <a href='"+datas[i].link+"' target=_blank>"+datas[i].title+"</a>  "+"收藏"+"  "+datas[i].collect+"</li>";
 	}
 
 	$("#resource").html(resource);
 	$("#whichPage").text(pageno+"/"+maxpageno);
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
-		$("#lastPage").attr("disabled","true");
+		$("#lastPage").attr("disabled",true);
 	} else if(pageno == maxpageno) {
 		//最后一页无法点击下一页按钮
-		$("#nextPage").attr("disabled","true");
+		$("#nextPage").attr("disabled",true);
 	}
 }
 
@@ -28,6 +28,8 @@ toSomePage = function(toWhich) {
 	//请求拿到对应页的资源
 	$.post("user",{"selectBy":"common","pageno":toWhich},function(resq){
 		eval("var page = " + resq);
+		$("#lastPage").attr("disabled",false);
+		$("#nextPage").attr("disabled",false);
 		//展示资源
 		showResource(page);
 	},"text");
@@ -58,7 +60,7 @@ $(function(){
 			$("#loginStatus").val("登录");
 		}
 		//第一次访问index页面的时候展示第一页资源
-		pageno = page.pageno;	//全局变量，当前页号，初始值为1
+		pageno = json[1].pageno;	//全局变量，当前页号，初始值为1
 		showResource(json[1]);
 	},"text");
 
