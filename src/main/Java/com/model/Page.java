@@ -19,6 +19,10 @@ public class Page<T> {
     public Page() {
     }
 
+    public Page(Integer pageno) {
+        this.pageno = pageno;
+    }
+
     public Page(Integer pageno, Long totalsize, List<T> dataList) {
         this.pageno = pageno;
         this.totalsize = totalsize;
