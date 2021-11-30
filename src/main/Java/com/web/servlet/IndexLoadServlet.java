@@ -6,6 +6,7 @@ import com.model.Resource;
 import com.model.User;
 import com.utils.JsonUtil;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +24,15 @@ public class IndexLoadServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         // 判断请求类型
-        String type = (String)request.getAttribute("type");
+        String type = request.getParameter("type");
+
+        System.out.println(type);
         if("indexload".equals(type)){
             // 主页面加载
             indexLoad(request,response);
         }else{
             // 退出登录
-            logout(request);
+            logout(request,response);
         }
     }
 
@@ -37,6 +40,7 @@ public class IndexLoadServlet extends HttpServlet {
      * 主页面加载（登录状态检查、资源加载）
      * @param request
      * @param response
+     * @throws IOException
      */
     private void indexLoad(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 检查用户是否已登录
@@ -57,14 +61,12 @@ public class IndexLoadServlet extends HttpServlet {
         Long totalsize = new ResourceDaoImpl().getNum();
         // 资源数据
         List<Resource> list = new ResourceDaoImpl().getAllResource(1,10);
-
         // 将资源包装为对象
         Page<Resource> page = new Page(1, totalsize, list);
         // 将对象转换为
         String json = JsonUtil.toJson(page);
-
         // 查询结果
-        String result = "[{ isLogin : " + isLogin + ",username : \"" + username + "\"}," + json + "]";
+        String result = "[{isLogin : " + isLogin + ",username : \"" + username + "\"}," + json + "]";
 
         response.getWriter().print(result);
     }
@@ -73,12 +75,12 @@ public class IndexLoadServlet extends HttpServlet {
      * 退出登录
      * @param request
      */
-    private void logout(HttpServletRequest request){
+    private void logout(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         // 判断用户是否已登录
         HttpSession session = request.getSession(false);
-        // 如果用户已登录，注销session
+        // 如果用户已登录，删除用户登录状态
         if(session != null && session.getAttribute("user") != null){
-            session.invalidate();
+            session.removeAttribute("user");
         }
     }
 }
