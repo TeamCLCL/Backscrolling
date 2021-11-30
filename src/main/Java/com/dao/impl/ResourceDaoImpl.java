@@ -11,14 +11,13 @@ import com.utils.JsonUtil;
 import java.util.List;
 
 public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
-    /**
     public static void main(String[] args) {
-        List<Resource> list1 = new ResourceDaoImpl().getAllResource(0,10);
+        List<Resource> list1 = new ResourceDaoImpl().getAllResource(new Page(1));
         for(Resource resource:list1){
             System.out.println(JsonUtil.toJson(resource));
         }
 
-        List<Resource> list2 = new ResourceDaoImpl().getResourceByKeyword(new CriteriaResource("百"), 0, 10);
+        /*List<Resource> list2 = new ResourceDaoImpl().getResourceByKeyword(new CriteriaResource("百"), 0, 10);
         for(Resource resource:list2){
             System.out.println(JsonUtil.toJson(resource));
         }
@@ -27,9 +26,8 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
         List<Resource> list3 = new ResourceDaoImpl().getResourceByKeyword(new CriteriaResource("百"), 0, 10);
         for(Resource resource:list3){
             System.out.println(JsonUtil.toJson(resource));
-        }
+        }*/
     }
-    */
 
     /**
      * 获取所有资源（分页查询）
