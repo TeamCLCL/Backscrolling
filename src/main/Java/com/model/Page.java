@@ -10,7 +10,7 @@ public class Page<T> {
     // 页码
     private Integer pageno;
     // 每页显示记录数
-    private Integer pagesize = 10;
+    private Integer pagesize = 3;
     // 总记录数
     private Long totalsize;
     // 数据集合
