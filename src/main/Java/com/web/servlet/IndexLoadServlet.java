@@ -7,10 +7,7 @@ import com.model.User;
 import com.utils.JsonUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -53,13 +50,15 @@ public class IndexLoadServlet extends HttpServlet {
             username = user.getName();
         }
 
+        // 包装为页面对象
+        Page<Resource> page = new Page(1);
         // 查询数据库，加载第一页的资源
+        // 资源数据
+        List<Resource> list = new ResourceDaoImpl().getAllResource(page);
         // 资源总条数
         Long totalsize = new ResourceDaoImpl().getNum();
-        // 资源数据
-        List<Resource> list = new ResourceDaoImpl().getAllResource(1,10);
         // 将资源包装为对象
-        Page<Resource> page = new Page(1, totalsize, list);
+        page = new Page(1, totalsize, list);
         // 将对象转换为
         String json = JsonUtil.toJson(page);
         // 查询结果
