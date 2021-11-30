@@ -42,7 +42,6 @@ $(function(){
 	$("#loginStatus").on("click",function(){
 		//如果是未登录状态，接下来要跳转到登陆页面进行登陆
 		//如果是登陆状态，接下来要退出登陆，退出后留在原页
-		alert(status);
 		if (status == 1) {
 			$.ajax({
 				"url":"logout",
