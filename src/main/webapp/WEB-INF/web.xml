@@ -45,6 +45,16 @@
     <url-pattern>*.ico</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.ttf</url-pattern>
+  </servlet-mapping>
+
   <!-- 数据库连接池配置信息 -->
   <context-param>
     <param-name>javax.faces.CONFIG_FILES</param-name>
@@ -124,7 +134,7 @@
   <!-- 主页面加载、退出登录 -->
   <servlet>
     <servlet-name>IndexLoadServlet</servlet-name>
-    <servlet-class>com.web.servlet.ResetServlet</servlet-class>
+    <servlet-class>com.web.servlet.IndexLoadServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>IndexLoadServlet</servlet-name>
