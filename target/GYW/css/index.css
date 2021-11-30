@@ -40,13 +40,18 @@ header {
     color:  rgb(245, 92, 21);
 }
 
-
+.search select {
+    height: 36px;
+    border: 2px solid rgb(209, 61, 16);
+    margin-left: 66px;
+    outline: 0;
+}
 
 .search input {
     position: absolute;
-    left: 890px;
-    top: 18px;
-    width: 250px;
+    left: 920px;
+    top: 17px;
+    width: 220px;
     height: 36px;
     border: 2px solid rgb(209, 61, 16);
     padding-left: 10px;
@@ -57,7 +62,7 @@ header {
 .search button {
     position: absolute;
     left: 1140px;
-    top: 18px;
+    top: 17px;
     height: 36px;
     width: 60px;
     border: none;
@@ -66,6 +71,8 @@ header {
     font-size: 18px;
     background-color: rgb(209, 61, 16);
 }
+
+
 
 .bk {
     /* border-top: 2px solid rgb(209, 61, 16); */

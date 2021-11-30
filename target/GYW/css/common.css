@@ -31,6 +31,20 @@
     float: left;
 }
 
+.shortcut ul input {
+    width: 60px;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-left: 5px;
+    outline: 0;
+}
+
+.loginbutton :hover {
+    color: red;
+}
+
+
 .rights li{
     font-size: 20px;
 }
