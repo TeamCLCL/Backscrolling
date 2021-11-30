@@ -11,6 +11,7 @@ import java.util.List;
  *  用户接口实现类
  */
 public class UserDaoImpl extends Dao<User> implements UserDao {
+    /**
     public static void main(String[] args) {
         List<User> list1 = new UserDaoImpl().getAllUser();
         for(User user:list1){
@@ -19,6 +20,7 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
 
         System.out.println(new UserDaoImpl().nameCheck("zhangsan"));
     }
+    */
 
     /**
      * 查询所有用户
@@ -98,15 +100,13 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
         return 0;
     }
 
-
-
     /**
      * 收藏资源
      * @param user_id
      * @param resource_id
      */
     @Override
-    public boolean collectResource(Integer user_id, Integer resource_id) {
+    public boolean collect(Integer user_id, Integer resource_id) {
         String sql1 = "insert into t_user_collect(user_id,resource_id) values(?,?)";
         String sql2 = "update t_resource set collect = collect + 1 where id = ?";
         return update(new String[]{sql1, sql2}, user_id, resource_id);
@@ -118,7 +118,7 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
      * @param resource_id
      */
     @Override
-    public boolean notCollectResource(Integer user_id, Integer resource_id) {
+    public boolean removeCollect(Integer user_id, Integer resource_id) {
         String sql1 = "delete from t_user_collect where user_id = ? and resource_id = ?";
         String sql2 = "update t_resource set collect = collect - 1 where id = ?";
         return update(new String[]{sql1, sql2}, user_id, resource_id);

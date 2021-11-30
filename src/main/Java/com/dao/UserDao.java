@@ -60,7 +60,7 @@ public interface UserDao {
      * @param resource_id
      * @return
      */
-    boolean collectResource(Integer user_id, Integer resource_id);
+    boolean collect(Integer user_id, Integer resource_id);
 
     /**
      * 移除所收藏的资源
@@ -68,5 +68,5 @@ public interface UserDao {
      * @param resource_id
      * @return
      */
-    boolean notCollectResource(Integer user_id, Integer resource_id);
+    boolean removeCollect(Integer user_id, Integer resource_id);
 }
