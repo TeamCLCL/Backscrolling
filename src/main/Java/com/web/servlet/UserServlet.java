@@ -62,28 +62,31 @@ public class UserServlet extends HttpServlet {
         // 获取资源
         List<Resource> list = null;
         // 获取总资源数
-        Long totalsize = null;
+        Integer totalsize = null;
         if("common".equals(selectBy)){
             // 用户普通检索资源（分页查询）
             // 获取对应页码的页面资源
             list = new ResourceDaoImpl().getAllResource(page);
-            // 获取总资源数
-            totalsize = Long.valueOf(list.size());
+            // 获取总资源数（让分页失效）
+            page = new Page(1, Integer.MAX_VALUE);
+            totalsize = new ResourceDaoImpl().getAllResource(page).size();
         }else if("keyword".equals(selectBy)){
             // 用户以关键字检索资源（分页查询）
             String keyword = request.getParameter("keyword");
             CriteriaResource cr = new CriteriaResource(keyword);
             // 获取对应页码的页面资源
             list = new ResourceDaoImpl().getResourceByKeyword(cr, page);
-            // 获取总资源数
-            totalsize = Long.valueOf(list.size());
+            // 获取总资源数（让分页失效）
+            page = new Page(1, Integer.MAX_VALUE);
+            totalsize = new ResourceDaoImpl().getResourceByKeyword(cr, page).size();
         }else if("type".equals(selectBy)){
             // 用户以资源类别检索资源（分页查询）
             Type type = new Type(request.getParameter("type"));
             // 获取对应页码的页面资源
             list = new ResourceDaoImpl().getResourceByType(type, page);
-            // 获取总资源数
-            totalsize = Long.valueOf(list.size());
+            // 获取总资源数（让分页失效）
+            page = new Page(1, Integer.MAX_VALUE);
+            totalsize = new ResourceDaoImpl().getResourceByType(type, page).size();
         }
         // 包装为页面对象
         page = new Page(pageno, totalsize, list);
@@ -119,8 +122,9 @@ public class UserServlet extends HttpServlet {
             Page page = new Page(pageno, 5);
             // 用户获取所收藏的资源
             List<Resource> list = new ResourceDaoImpl().getUserCollects(user, page);
-            // 获取用户收藏的总资源数
-            Long totalsize = Long.valueOf(list.size());
+            // 获取用户收藏的总资源数（让分页失效）
+            page = new Page(1, Integer.MAX_VALUE);
+            Integer totalsize = new ResourceDaoImpl().getUserCollects(user, page).size();
             // 将获取专业装入页面对象
             page = new Page(pageno, page.getPagesize(), totalsize, list);
             // 将获取的资源包装为json字符串
