@@ -20,8 +20,6 @@ showResource = function(page) {
 		//最后一页无法点击下一页按钮
 		$("#nextPage").attr("disabled",true);
 	}
-
-
 }
 
 //前往指定页
