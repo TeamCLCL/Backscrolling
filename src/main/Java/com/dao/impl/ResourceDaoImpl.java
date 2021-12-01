@@ -1,11 +1,8 @@
 package com.dao.impl;
 
-import com.model.CriteriaResource;
+import com.model.*;
 import com.dao.Dao;
 import com.dao.ResourceDao;
-import com.model.Page;
-import com.model.Resource;
-import com.model.Type;
 import com.utils.JsonUtil;
 
 import java.util.List;
@@ -36,7 +33,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
     @Override
     public List<Resource> getAllResource(Page page) {
         String sql = "select * from t_resource order by collect limit ?,?";
-        return getForBeanList(sql, page.getPageno() - 1, page.getPagesize());
+        return getForBeanList(sql, (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
     /**
@@ -49,7 +46,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
         String sql = "select * from t_resource where title like ? order by collect limit ?,?";
         // 修改了CriteriaResource的getter方法，使其返回的字符串中有"%%",
         // 若参数为空则返回"%%"，否则返回 "%" + 字段本身的值 + "%"
-        return getForBeanList(sql, cr.getTitle(), page.getPageno() - 1, page.getPagesize());
+        return getForBeanList(sql, cr.getTitle(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
     /**
@@ -62,19 +59,19 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
         String sql = "select tr.id,tr.title,tr.link,tr.collect from t_resource tr"
                         + " join t_resource_type trt on tr.id = trt.resource_id"
                         + " where trt.type_id in (select id from t_type where type = ?) order by collect limit ?,?";
-        return getForBeanList(sql, type.getType(), page.getPageno() - 1, page.getPagesize());
+        return getForBeanList(sql, type.getType(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
     /**
-     * 查询用户所收藏的资源
-     * @param user_id
-     * @param resource_id
+     * 查询用户所收藏的资源（分页查询）
      * @return
      */
     @Override
-    public List<Resource> getUserCollects(Integer user_id, Integer resource_id) {
-        String sql = "select * from t_resource where resource_id = (select resource_id from t_user_collect where user_id = ? and resource_id = ?)";
-        return getForBeanList(sql, user_id, resource_id);
+    public List<Resource> getUserCollects(User user, Page page) {
+        String sql = "select * from t_resource where resource_id ="
+                        + " (select resource_id from t_user_collect where user_id = ?)"
+                        + " order by collect limit ?,?";
+        return getForBeanList(sql, user.getId(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
     /**
@@ -105,15 +102,5 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
     public void update(Integer id) {
         String sql = "";
         update(sql);
-    }
-
-    /**
-     * 获取总资源数
-     * @return
-     */
-    @Override
-    public long getNum() {
-        String sql = "select count(*) from t_resource";
-        return getForValue(sql);
     }
 }

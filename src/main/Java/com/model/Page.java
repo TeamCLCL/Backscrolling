@@ -10,7 +10,7 @@ public class Page<T> {
     // 页码
     private Integer pageno;
     // 每页显示记录数
-    private Integer pagesize = 3;
+    private Integer pagesize = 10;
     // 总记录数
     private Long totalsize;
     // 数据集合
@@ -19,12 +19,33 @@ public class Page<T> {
     public Page() {
     }
 
+    /**
+     * 用于主页面展示
+     * @param pageno
+     */
     public Page(Integer pageno) {
         this.pageno = pageno;
     }
 
+    /**
+     * 用于用户收藏列表展示
+     * @param pageno
+     * @param pagesize
+     */
+    public Page(Integer pageno, Integer pagesize) {
+        this.pageno = pageno;
+        this.pagesize = pagesize;
+    }
+
     public Page(Integer pageno, Long totalsize, List<T> dataList) {
         this.pageno = pageno;
+        this.totalsize = totalsize;
+        this.dataList = dataList;
+    }
+
+    public Page(Integer pageno, Integer pagesize, Long totalsize, List<T> dataList) {
+        this.pageno = pageno;
+        this.pagesize = pagesize;
         this.totalsize = totalsize;
         this.dataList = dataList;
     }

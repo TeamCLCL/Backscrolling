@@ -1,9 +1,6 @@
 package com.dao;
 
-import com.model.CriteriaResource;
-import com.model.Page;
-import com.model.Resource;
-import com.model.Type;
+import com.model.*;
 
 import java.util.List;
 
@@ -33,11 +30,11 @@ public interface ResourceDao {
 
     /**
      * 获取用户所收藏的资源（分页查询）
-     * @param user_id
-     * @param resource_id
+     * @param user
+     * @param page
      * @return
      */
-    List<Resource> getUserCollects(Integer user_id, Integer resource_id);
+    List<Resource> getUserCollects(User user, Page page);
 
     /**
      * 管理员添加资源
@@ -57,10 +54,4 @@ public interface ResourceDao {
      * @return
      */
     void update(Integer id);
-
-    /**
-     * 获取总资源数
-     * @return
-     */
-    long getNum();
 }
