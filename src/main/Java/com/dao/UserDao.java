@@ -9,12 +9,6 @@ import java.util.List;
  */
 public interface UserDao {
     /**
-     * 查询所有用户
-     * @return
-     */
-    List<User> getAllUser();
-
-    /**
      * 用户名唯一性验证
      * @return
      */
@@ -41,21 +35,20 @@ public interface UserDao {
     User loginCheck(User user, String accountType);
 
     /**
-     * 修改用户
+     * 用户重置密码
      * @param user
      * @return
      */
     int resetPassword(User user);
 
     /**
-     * 用户修改个人信息
-     * @param user
+     * 管理员查询所有用户
      * @return
      */
-    int updateMessage(User user);
+    List<User> getAllUser();
 
     /**
-     * 收藏资源
+     * 用户收藏资源
      * @param user_id
      * @param resource_id
      * @return
@@ -63,10 +56,17 @@ public interface UserDao {
     boolean collect(Integer user_id, Integer resource_id);
 
     /**
-     * 移除所收藏的资源
+     * 用户移除所收藏的资源
      * @param user_id
      * @param resource_id
      * @return
      */
     boolean removeCollect(Integer user_id, Integer resource_id);
+
+    /**
+     * 用户修改个人信息
+     * @param user
+     * @return
+     */
+    int updateMessage(User user);
 }

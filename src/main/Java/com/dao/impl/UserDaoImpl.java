@@ -2,6 +2,7 @@ package com.dao.impl;
 
 import com.dao.Dao;
 import com.dao.UserDao;
+import com.model.Admin;
 import com.model.User;
 import com.utils.JsonUtil;
 
@@ -21,16 +22,6 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
         System.out.println(new UserDaoImpl().nameCheck("zhangsan"));
     }
     */
-
-    /**
-     * 查询所有用户
-     * @return
-     */
-    @Override
-    public List<User> getAllUser() {
-        String sql = "select * from t_user";
-        return getForBeanList(sql);
-    }
 
     /**
      * 用户名唯一性验证
@@ -80,7 +71,7 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
     }
 
     /**
-     * 重置密码
+     * 用户重置密码
      * @param user
      * @return
      */
@@ -91,13 +82,13 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
     }
 
     /**
-     * 用户修改个人信息
-     * @param user
+     * 管理员查询所有用户
      * @return
      */
     @Override
-    public int updateMessage(User user) {
-        return 0;
+    public List<User> getAllUser() {
+        String sql = "select * from t_user";
+        return getForBeanList(sql);
     }
 
     /**
@@ -122,5 +113,15 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
         String sql1 = "delete from t_user_collect where user_id = ? and resource_id = ?";
         String sql2 = "update t_resource set collect = collect - 1 where id = ?";
         return update(new String[]{sql1, sql2}, user_id, resource_id);
+    }
+
+    /**
+     * 用户修改个人信息
+     * @param user
+     * @return
+     */
+    @Override
+    public int updateMessage(User user) {
+        return 0;
     }
 }
