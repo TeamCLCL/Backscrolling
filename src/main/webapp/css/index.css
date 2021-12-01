@@ -41,16 +41,17 @@ header {
 }
 
 .search select {
+    float: left;
+    margin-top: 14px;
     height: 36px;
     border: 2px solid rgb(209, 61, 16);
-    margin-left: 66px;
     outline: 0;
 }
 
-.search input {
-    position: absolute;
-    left: 920px;
-    top: 17px;
+
+.search span input {
+    
+    margin-left: -2px;
     width: 220px;
     height: 36px;
     border: 2px solid rgb(209, 61, 16);
@@ -60,9 +61,6 @@ header {
 }
 
 .search button {
-    position: absolute;
-    left: 1140px;
-    top: 17px;
     height: 36px;
     width: 60px;
     border: none;
@@ -72,7 +70,12 @@ header {
     background-color: rgb(209, 61, 16);
 }
 
-
+.search span .type {
+    display: none;
+    margin-left: -2px;
+    width: 220px;
+    border: 2px solid rgb(209, 61, 16);
+}
 
 .bk {
     /* border-top: 2px solid rgb(209, 61, 16); */
@@ -95,7 +98,7 @@ header {
 .zhiding {
     float: left;
     background-color: #fff;
-    width: 796px;
+    width: 900px;
     height: 100px;
 }
 
@@ -110,14 +113,14 @@ header {
 
 .zhiding .li1 {
     float: left;
-    width: 398px;
+    width: 446px;
     border-right: 2px solid rgb(247, 247, 247);
     border-bottom: 2px solid rgb(247, 247, 247);
 }
 
 .zhiding .li2 {
     float: left;
-    width: 398px;
+    width: 446px;
     border-bottom: 2px solid rgb(247, 247, 247);
 }
 
@@ -154,40 +157,8 @@ header {
     background-color: #eaf8ff;
 }
 
-.twoitem{
-    border: 2px red solid;
-    height: 420px;
-}
-
-.item{
-    float: left;
-    width: 532px;
-    height: 420px;
-    margin-bottom: 20px;
-}
-
-.item a{
-    width: 100%;
-    height: 100%;
-}
-
-
-
-.preview{
-    height: 60px;
-    font-size: 20px;
-    padding: 0 20px;
-    margin-top: 10px;
-}
-
-.appraise{
-    font-size: 14px;
-    color: #b0b0b0;
-    padding: 0 20px;
-}
-
 .side{
-    margin-left: 124px;
+    margin-left: 20px;
     width: 280px;
     float:left;
     font-size: 16px;
@@ -212,12 +183,19 @@ header {
     border: 2px solid red;
 }
 
+.centent .navigation {
+    position: relative;
+    top: 80%;
+    left: 30%;
 
-/* 换页 */
-.page-icon{
-    margin:80px 0 0 0;/*设置距离顶部20像素*/
-    font-size:0;/*修复行内元素之间空隙间隔*/
-    text-align:center;/*设置内容居中显示*/
+}
+
+
+
+/* .page-icon{
+    margin:80px 0 0 0;
+    font-size:0;
+    text-align:center;
 }
 
 .page-icon a,.page-disabled,.page-next{
@@ -244,10 +222,10 @@ header {
 }
 
 .page-next i,.page-disabled i{
-    cursor:pointer;/*设置鼠标经过时的显示为小手状态*/
+    cursor:pointer;
     display:inline-block;
     width:5px;
     height:9px;
-}
+}  */
 
-
+ 

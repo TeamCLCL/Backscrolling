@@ -5,10 +5,32 @@ showResource = function(page) {
 	//页码pageno，资源总数totalsize，每页条数pagesize，资源数组dataList
 	//dataList中有id title link collect
 	maxpageno = Math.ceil(page.totalsize/page.pagesize);	//全局变量最大页号
-	var resource = "<li>序号  资源  操作 当前收藏量</li>";
+	var resource = "<li>资源  操作 当前收藏量</li>";
 	var datas = page.dataList;
 	for(var i = 0; i < datas.length; i++) {
 		resource += "<li>"+datas[i].id+"  <a href='"+datas[i].link+"' target=_blank>"+datas[i].title+"</a>  "+"收藏"+"  "+datas[i].collect+"</li>";
+
+		resource += "<li><a href='"+datas[i].link+"'>"+datas[i].title+"</a>  ";
+		resource += "<span id='"+datas[i].id+"'>收藏</span>  ";
+		resource += "<span id='"+datas[i].id+"_col'>"+datas[i].collect+"</span></li>";
+
+		$("#"+datas[i].id).click(function(){
+			//当要收藏时，收藏数+1；当要取消收藏时，收藏数-1
+			//colType保存当前收藏状态：【收藏】或【取消收藏】
+			var colType = $("#"+datas[i].id).text();
+			//colNum保存用户点击后的收藏数
+			var colNum = (colType == '收藏') ? (datas[i].collect + 1) : (datas[i].collect - 1);
+			var useroperres = ($("#"+datas[i].id) == '收藏') ? ("collect") : ("remove");
+
+			//发送请求修改收藏数
+			$.post("user",{"useroperres":useroperres,"resourceid":datas[i].id},function(resq) {
+				//修改展示时的收藏数
+				$("#"+datas[i].id+"_col").text(colNum);
+				//进行【收藏】和【取消收藏】的切换
+				$("#"+datas[i].id).text((colType == '收藏') ? ("取消收藏") : ("收藏"));
+			},"text");
+
+		})
 	}
 
 	$("#resource").html(resource);

@@ -58,13 +58,19 @@
             </ul>
 
             <div class="search">
-                <select id="selectchange" name="selectType">
+                <select id="selectchange" name="selectType"  onchange="change()">
                     <option value="keyword">按关键字</option>
                     <option value="type">按类别</option>
                 </select>
-                <span id="change">
+                <span id="keyword">
                     <input id="s1" type="text" placeholder="请输入...">
-                    <button id="s2">搜索</button>
+                    <button id="s2" >搜索</button>
+                </span>
+                <span id="type" >
+                    <select  id="33" class="type">
+                        <option value="keyword">按关键字</option>
+                        <option value="type">按类别</option>
+                    </select>
                 </span>
             </div>
         </div>
@@ -120,27 +126,18 @@
                 <ul id="resource">
    
                 </ul>
-                <ul id="navigation">
+                <ul id="navigation" class="navigation">
                  <li>
-                  <input type='button' id='lastPage' value='上一页'>
-                  <span id='whichPage'></span>
-                  <input type='button' id='nextPage' value='下一页'>
-                  前往至第<input type='text' id='target'>页
-                  <input type='button' id='goto' value='点击前往'>
+                    <input type='button' id='lastPage' value='上一页'>
+                    <span id='whichPage'></span>
+                    <input type='button' id='nextPage' value='下一页'>
+                    前往至第<input type='text' id='target'>页
+                    <input type='button' id='goto' value='点击前往'>
                  </li>
                 </ul>
             </div>
 
-            <div class="page-icon">
-                <span class="page-disabled"><i></i>上一页</span>
-                <span class="page-current">1</span>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <span>...</span>
-                <a class="page-next" href="#">下一页<i></i></a>
-            </div>
+            
 
 
         </div>
