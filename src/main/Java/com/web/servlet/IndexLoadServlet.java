@@ -56,7 +56,7 @@ public class IndexLoadServlet extends HttpServlet {
         // 资源数据
         List<Resource> list = new ResourceDaoImpl().getAllResource(page);
         // 资源总条数
-        Long totalsize = new ResourceDaoImpl().getNum();
+        Long totalsize = Long.valueOf(list.size());
         // 将资源包装为对象
         page = new Page(1, totalsize, list);
         // 将对象转换为
