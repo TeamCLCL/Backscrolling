@@ -15,25 +15,5 @@ window.onload = function(){
     }
   }  
 
-  $(function(){
-    var li = $('#sel');
-    var cc=$('#sel option'); 
-    var len=cc.length;
-    li.change(function(){
-    //  alert(123);
-    var t = parseInt(li.get(0).selectedIndex);
-     // var id=$('#chanpin'+t);
-    //  alert(t) ;
-  for(var i= 1;i<len;i++){
-     if(t==i){
-     // alert(i);
-      $('#s'+t).show();
 
-     }else{
-       $('#s'+i).hide();
-     }
-     if(t==0){$('#s'+i).show();}
-     }
-   
-    });   
-});
+
