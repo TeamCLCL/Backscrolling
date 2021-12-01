@@ -1,16 +1,15 @@
 package com.web.servlet;
 
 import com.dao.impl.ResourceDaoImpl;
-import com.model.CriteriaResource;
-import com.model.Page;
-import com.model.Resource;
-import com.model.Type;
+import com.dao.impl.UserDaoImpl;
+import com.model.*;
 import com.utils.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -29,14 +28,21 @@ public class UserServlet extends HttpServlet {
             select(request, response);
         }
 
-        // 判断是否为用户对资源的操作
-        String operation = request.getParameter("operation");
-        if(operation != null){
-            operation(request, response);
-        }
+        // 检查用户登录状态
+        HttpSession session = request.getSession(false);
+        if(session != null && session.getAttribute("user") != null){
+            // 判断是否为用户对资源的操作（需用户登录）
+            String useroperres = request.getParameter("useroperres");
+            if(useroperres != null){
+                useroperres(request, response);
+            }
 
-        // 判断用户对个人信息的操作类型
-        String msg = request.getParameter("");
+            // 判断是否为用户对个人信息的操作（需用户登录）
+            String useropermsg = request.getParameter("useropermsg");
+            if(useropermsg != null){
+                useropermsg(request, response);
+            }
+        }
     }
 
     /**
@@ -47,7 +53,6 @@ public class UserServlet extends HttpServlet {
      */
     private void select(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
-
         // 页码
         Integer pageno = Integer.valueOf(request.getParameter("pageno"));
         // 包装为页面对象
@@ -56,22 +61,30 @@ public class UserServlet extends HttpServlet {
         String selectBy = request.getParameter("selectBy");
         // 获取资源
         List<Resource> list = null;
+        // 获取总资源数
+        Long totalsize = null;
         if("common".equals(selectBy)){
-            // 普通分页查询
-            list = selectByCommon(page);
+            // 用户普通检索资源（分页查询）
+            // 获取对应页码的页面资源
+            list = new ResourceDaoImpl().getAllResource(page);
+            // 获取总资源数
+            totalsize = Long.valueOf(list.size());
         }else if("keyword".equals(selectBy)){
-            // 按关键字分页查询
+            // 用户以关键字检索资源（分页查询）
             String keyword = request.getParameter("keyword");
             CriteriaResource cr = new CriteriaResource(keyword);
-            list = selectByKeyword(cr, page);
+            // 获取对应页码的页面资源
+            list = new ResourceDaoImpl().getResourceByKeyword(cr, page);
+            // 获取总资源数
+            totalsize = Long.valueOf(list.size());
         }else if("type".equals(selectBy)){
-            // 按资源类别分页查询
-            String type = request.getParameter("type");
-            Type t = new Type();
-            list = selectByType(t, page);
+            // 用户以资源类别检索资源（分页查询）
+            Type type = new Type(request.getParameter("type"));
+            // 获取对应页码的页面资源
+            list = new ResourceDaoImpl().getResourceByType(type, page);
+            // 获取总资源数
+            totalsize = Long.valueOf(list.size());
         }
-        // 获取资源总数
-        Long totalsize = new ResourceDaoImpl().getNum();
         // 包装为页面对象
         page = new Page(pageno, totalsize, list);
         // 转换为Json字符串
@@ -81,82 +94,54 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
-     * 用户操作资源（增、删、查）
+     * 用户操作资源（查询所收藏资源、收藏、移除收藏）
      * @param request
      * @param response
+     * @throws IOException
      */
-    private void operation(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void useroperres(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
-
         // 判断用户对资源的操作类型
-        String operation = request.getParameter("operation");
-        // 操作是否成功
-        boolean isSuccess = false;
-        if("collect".equals(operation)){
-            // 用户获取所收藏的资源
-            selectCollects(request,response);
-        }else if("remove".equals(operation)){
+        String useroperres = request.getParameter("useroperres");
+        // 获取当前登录用户id
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        Integer user_id = user.getId();
+        // 不同操作类型对应不同处理方式
+        if("collect".equals(useroperres)){
+            // 获取用户收藏的资源id
+            Integer resource_id = Integer.valueOf(request.getParameter("resourceid"));
             // 用户收藏资源
-            collect();
-        }else if("select".equals(operation)){
+            new UserDaoImpl().collect(user_id, resource_id);
+        }else if("select".equals(useroperres)){
+            // 获取页码
+            Integer pageno = Integer.valueOf(request.getParameter("pageno"));
+            Page page = new Page(pageno, 5);
+            // 用户获取所收藏的资源
+            List<Resource> list = new ResourceDaoImpl().getUserCollects(user, page);
+            // 获取用户收藏的总资源数
+            Long totalsize = Long.valueOf(list.size());
+            // 将获取专业装入页面对象
+            page = new Page(pageno, page.getPagesize(), totalsize, list);
+            // 将获取的资源包装为json字符串
+            String json = JsonUtil.toJson(page);
+            // 将资源传送给前端
+            out.print(json);
+        }else if("remove".equals(useroperres)){
+            // 获取用户收藏的资源id
+            Integer resource_id = Integer.valueOf(request.getParameter("resourceid"));
             // 用户移除收藏的资源
-            removeCollect();
+            new UserDaoImpl().removeCollect(user_id, resource_id);
         }
     }
 
     /**
-     * 用户检索资源（分页查询）
-     * @param page
-     * @throws IOException
-     * @return
-     */
-    private List<Resource> selectByCommon(Page page) throws IOException {
-        // 获取对应页码的页面资源
-        return new ResourceDaoImpl().getAllResource(page);
-    }
-
-    /**
-     * 用户以关键字检索资源（分页查询）
-     * @param cr
-     * @param page
-     * @return
-     */
-    private List<Resource> selectByKeyword(CriteriaResource cr, Page page){
-        return new ResourceDaoImpl().getResourceByKeyword(cr, page);
-    }
-
-    /**
-     * 用户以资源类别检索资源（分页查询）
-     * @param type
-     * @param page
-     * @return
-     */
-    private List<Resource> selectByType(Type type, Page page){
-        return new ResourceDaoImpl().getResourceByType(type, page);
-    }
-
-    /**
-     * 用户获取自己所收藏资源（分页查询）
+     * 用户对个人信息的操作
      * @param request
      * @param response
-     * @return
      */
-    private List<Resource> selectCollects(HttpServletRequest request, HttpServletResponse response){
-        return new ResourceDaoImpl().getUserCollects(1,1);
-    }
+    private void useropermsg(HttpServletRequest request, HttpServletResponse response) {
 
-    /**
-     * 用户收藏资源
-     */
-    private void collect(){
-        /*new UserDaoImpl().collect();*/
-    }
-
-    /**
-     * 用户移除收藏资源
-     */
-    private void removeCollect(){
-        /*new UserDaoImpl().removeCollect();*/
     }
 
     /**
