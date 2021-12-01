@@ -38,6 +38,9 @@ showResource = function(page) {
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
 		$("#lastPage").attr("disabled",true);
+		if(maxpageno == 1) {
+			$("#nextPage").attr("disabled",true);
+		}
 	} else if(pageno == maxpageno) {
 		//最后一页无法点击下一页按钮
 		$("#nextPage").attr("disabled",true);

@@ -1,14 +1,17 @@
 package com.web.servlet;
 
 import com.dao.impl.ResourceDaoImpl;
+import com.dao.impl.TypeDaoImpl;
 import com.model.Page;
 import com.model.Resource;
+import com.model.Type;
 import com.model.User;
 import com.utils.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -23,10 +26,12 @@ public class IndexLoadServlet extends HttpServlet {
         String type = request.getParameter("type");
         if("indexload".equals(type)){
             // 主页面加载
-            indexLoad(request,response);
+            indexLoad(request, response);
+        }else if("type".equals(type)){
+            loadType(response);
         }else{
             // 退出登录
-            logout(request,response);
+            logout(request);
         }
     }
 
@@ -56,7 +61,7 @@ public class IndexLoadServlet extends HttpServlet {
         // 资源数据
         List<Resource> list = new ResourceDaoImpl().getAllResource(page);
         // 资源总条数
-        Long totalsize = Long.valueOf(list.size());
+        Integer totalsize = list.size();
         // 将资源包装为对象
         page = new Page(1, totalsize, list);
         // 将对象转换为
@@ -68,10 +73,25 @@ public class IndexLoadServlet extends HttpServlet {
     }
 
     /**
+     * 加载资源类别列表
+     * @param response
+     * @throws IOException
+     */
+    private void loadType(HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
+        // 获取所有资源类别
+        List<Type> list = new TypeDaoImpl().getAllType();
+        // 将资源类别转换为json字符串
+        String json = JsonUtil.toJson(list);
+        // 将资源类别传送给前端
+        out.print(json);
+    }
+
+    /**
      * 退出登录
      * @param request
      */
-    private void logout(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+    private void logout(HttpServletRequest request) throws IOException, ServletException {
         // 判断用户是否已登录
         HttpSession session = request.getSession(false);
         // 如果用户已登录，删除用户登录状态

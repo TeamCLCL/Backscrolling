@@ -8,9 +8,8 @@ showResource = function(page) {
 	var resource = "<li>资源  操作 当前收藏量</li>";
 	var datas = page.dataList;
 	for(var i = 0; i < datas.length; i++) {
-<<<<<<< HEAD
 		resource += "<li>"+datas[i].id+"  <a href='"+datas[i].link+"' target=_blank>"+datas[i].title+"</a>  "+"收藏"+"  "+datas[i].collect+"</li>";
-=======
+
 		resource += "<li><a href='"+datas[i].link+"'>"+datas[i].title+"</a>  ";
 		resource += "<span id='"+datas[i].id+"'>收藏</span>  ";
 		resource += "<span id='"+datas[i].id+"_col'>"+datas[i].collect+"</span></li>";
@@ -32,7 +31,6 @@ showResource = function(page) {
 			},"text");
 
 		})
->>>>>>> 9aec99439da2081ca58404ed83e19b9b0ab03aca
 	}
 
 	$("#resource").html(resource);
@@ -40,6 +38,9 @@ showResource = function(page) {
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
 		$("#lastPage").attr("disabled",true);
+		if(maxpageno == 1) {
+			$("#nextPage").attr("disabled",true);
+		}
 	} else if(pageno == maxpageno) {
 		//最后一页无法点击下一页按钮
 		$("#nextPage").attr("disabled",true);
