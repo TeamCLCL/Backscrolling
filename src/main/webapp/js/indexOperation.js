@@ -21,7 +21,7 @@ showResource = function(page) {
 			var useroperres = ($("#"+datas[i].id) == '收藏') ? ("collect") : ("remove");
 
 			//发送请求修改收藏数
-			$.post("user",{"useroperres":useroperres},function(resq) {
+			$.post("user",{"useroperres":useroperres,"resourceid":datas[i].id},function(resq) {
 				//修改展示时的收藏数
 				$("#"+datas[i].id+"_col").text(colNum);
 				//进行【收藏】和【取消收藏】的切换
