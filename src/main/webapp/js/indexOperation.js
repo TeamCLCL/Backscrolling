@@ -1,27 +1,5 @@
 //主页面相关操作
 
-/*collect = function(datas){
-	for(var i = 0; i < datas.length; i++) {
-		$("#"+datas[i].id).click(function(){
-			//当要收藏时，收藏数+1；当要取消收藏时，收藏数-1
-			//colType保存当前收藏状态：【收藏】或【取消收藏】
-			//var colType = $("#"+datas[i].id).val();
-			var colType = document.getElementById(datas[i].id).innerText;
-			//colNum保存用户点击后的收藏数
-			var colNum = (colType == '收藏') ? (datas[i].collect + 1) : (datas[i].collect - 1);
-			var useroperres = (colType == '收藏') ? ("collect") : ("remove");
-
-			//发送请求修改收藏数
-			$.post("user",{"useroperres":useroperres,"resourceid":datas[i].id},function(resq) {
-				//修改展示时的收藏数
-				$("#"+datas[i].id+"_col").text(colNum);
-				//进行【收藏】和【取消收藏】的切换
-				$("#"+datas[i].id).val((colType == '收藏') ? ("取消收藏") : ("收藏"));
-			},"text");
-		})
-	}
-}*/
-
 setCollect = function(id){
 
 	$("#"+id).click(function(){
@@ -60,27 +38,8 @@ showResource = function(page) {
 		resource = "";
 
 		setCollect(datas[i].id);
-
-		/*$("#"+datas[i].id).click(function(){
-			//当要收藏时，收藏数+1；当要取消收藏时，收藏数-1
-			//colType保存当前收藏状态：【收藏】或【取消收藏】
-			//var colType = $("#"+datas[i].id).text();
-			var colType = document.getElementById(datas[i].id).innerText;
-			//colNum保存用户点击后的收藏数
-			var colNum = (colType == '收藏') ? (datas[i].collect + 1) : (datas[i].collect - 1);
-			var useroperres = (colType == '收藏') ? ("collect") : ("remove");
-
-			//发送请求修改收藏数
-			$.post("user",{"useroperres":useroperres,"resourceid":datas[i].id},function(resq) {
-				//修改展示时的收藏数
-				$("#"+datas[i].id+"_col").text(colNum);
-				//进行【收藏】和【取消收藏】的切换
-				$("#"+datas[i].id).text((colType == '收藏') ? ("取消收藏") : ("收藏"));
-			},"text");
-		})*/
 	}
-
-
+	
 	$("#whichPage").text(pageno+"/"+maxpageno);
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
