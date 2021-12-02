@@ -39,7 +39,7 @@ showResource = function(page) {
 
 		setCollect(datas[i].id);
 	}
-	
+
 	$("#whichPage").text(pageno+"/"+maxpageno);
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
