@@ -21,22 +21,16 @@ public class GYWFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)response;
         // 调用请求对象读取请求包中的URI，了解用户访问的资源文件是谁
         String uri = req.getRequestURI();
-        // 如果本次请求资源文件与登录/注册/忘记密码/欢迎页相关，无条件放行
-        if(uri.contains("login") || uri.contains("Login") || uri.contains("logon") || uri.contains("Logon") || uri.contains("forget") || uri.contains("Reset") || "/GYW/".equals(uri) || uri.contains(".css") || uri.contains(".js") || uri.contains(".jpg") || uri.contains("png") || uri.contains(".ico") || uri.contains("check") || uri.contains("send") || uri.contains("load") || uri.contains("user") || uri.contains("admin")){
-            chain.doFilter(request,response);
-            return;
-        }
-        // 如果不是请求和登录、注册、忘记密码、欢迎页相关的资源文件，则需验证登录状态
-        // 获取session对象
+        // 获取session对象，判断管理员或用户是否已登录
         HttpSession session = req.getSession(false);
         if(session != null && (session.getAttribute("user") != null || session.getAttribute("admin") != null)) {
             // 获取session对象中的用户对象，如果有则表示当前登录的为用户
             User user = (User)session.getAttribute("user");
-            // 已登录者想访问登录页，提示先退出登录并调整到主页面
+            // 已登录者想访问登录页，管理员跳转到管理员页面，用户跳转到主页面
             if(uri.contains("login")){
                 if(user == null){
                     // 如果是管理员，则重定向到管理员管理页面
-                    resp.sendRedirect(req.getContextPath() + "/admin.html");
+                    resp.sendRedirect(req.getContextPath() + "/manage.html");
                 }else{
                     // 如果是用户，则重定向到主页面
                     resp.sendRedirect(req.getContextPath() + "/index.html");
@@ -46,8 +40,15 @@ public class GYWFilter implements Filter {
                 chain.doFilter(request,response);
             }
         }else{
-            // 未登录则重定向到登录页
-            resp.sendRedirect(req.getContextPath() + "/login.html");
+            // 若本次请求的资源文件与欢迎页/登录/注册/忘记密码/静态资源（css、js、图片...）相关，无条件放行
+            if(uri.contains("/GYW/") || uri.contains("login") || uri.contains("logon") || uri.contains("reset") || uri.contains("check") || uri.contains("send") || uri.contains("load") || uri.contains("user") || uri.contains("admin") || uri.contains(".css") || uri.contains(".js") || uri.contains(".jpg") || uri.contains("png") || uri.contains(".ico")){
+                // 放行
+                chain.doFilter(request,response);
+                return;
+            }else{
+                // 如果不是以上资源文件且未登录，则重定向到登录页
+                resp.sendRedirect(req.getContextPath() + "/login.html");
+            }
         }
     }
 }
