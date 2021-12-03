@@ -93,7 +93,7 @@ $(function(){
 					if(identity == 0) {
 						window.location = "index.html";
 					} else {
-						window.location = "admin.html";
+						window.location = "manage.html";
 					}
 				}
 			},"text");
