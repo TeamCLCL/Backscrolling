@@ -32,7 +32,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
      */
     @Override
     public List<Resource> getAllResource(Page page) {
-        String sql = "select * from t_resource order by collect limit ?,?";
+        String sql = "select * from t_resource order by collect desc limit ?,?";
         return getForBeanList(sql, (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
@@ -43,7 +43,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
      */
     @Override
     public List<Resource> getResourceByKeyword(CriteriaResource cr, Page page) {
-        String sql = "select * from t_resource where title like ? order by collect limit ?,?";
+        String sql = "select * from t_resource where title like ? order by collect desc limit ?,?";
         // 修改了CriteriaResource的getter方法，使其返回的字符串中有"%%",
         // 若参数为空则返回"%%"，否则返回 "%" + 字段本身的值 + "%"
         return getForBeanList(sql, cr.getTitle(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
@@ -58,7 +58,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
     public List<Resource> getResourceByType(Type type, Page page) {
         String sql = "select tr.id,tr.title,tr.link,tr.collect from t_resource tr"
                         + " join t_resource_type trt on tr.id = trt.resource_id"
-                        + " where trt.type_id in (select id from t_type where type = ?) order by collect limit ?,?";
+                        + " where trt.type_id in (select id from t_type where type = ?) order by collect desc limit ?,?";
         return getForBeanList(sql, type.getType(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
@@ -70,7 +70,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
     public List<Resource> getUserCollects(User user, Page page) {
         String sql = "select * from t_resource where resource_id ="
                         + " (select resource_id from t_user_collect where user_id = ?)"
-                        + " order by collect limit ?,?";
+                        + " order by collect desc limit ?,?";
         return getForBeanList(sql, user.getId(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
     }
 
