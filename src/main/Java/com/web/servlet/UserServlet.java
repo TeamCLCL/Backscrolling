@@ -99,7 +99,7 @@ public class UserServlet extends HttpServlet {
             for(int i = 0;i < list.size();++i){
                 Resource resource = list.get(i);
                 // 判断当前页面中资源用户是否收藏
-                if(userCollects.contains(resource)){
+                if(userCollects != null && userCollects.contains(resource)){
                     // 若收藏，将isCollect属性修改为true
                     resource.setIsCollect(true);
                     list.set(i, resource);
