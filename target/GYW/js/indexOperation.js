@@ -71,7 +71,7 @@ showResource = function(page) {
 toSomePage = function(toWhich) {
 	alert("即将前往第"+toWhich+"页");
 	//请求拿到对应页的资源
-	$.post("user",{"selectBy":selectBy,"pageno":toWhich},function(resq){
+	$.post("user",{"selectBy":selectBy,"content":searchContent,"pageno":toWhich},function(resq){
 		eval("var page = " + resq);
 		$("#lastPage").attr("disabled",false);
 		$("#nextPage").attr("disabled",false);
@@ -90,7 +90,7 @@ $(function(){
 	status = 0;		//保存用户的状态，0表示未登录，1表示已登录，默认未登录
 	selectBy = "common";	//搜索资源的类型，common表示普通资源，keyword表示按关键字搜索，type表示按类型搜索
 	var allType = "<option value='0' disabled selected>请选择类型...</option>";	//保存所有的资源类型
-	
+	searchContent = null;	//要搜索的内容
 
 	$.post("indexload",{"type":"indexload"},function(resq){
 		//传回来的json包括json[0]登陆状态和json[1]第一页资源相关的信息
@@ -143,9 +143,9 @@ $(function(){
 		//查询类型：关键字keyword或类别type
 		selectBy = $("#selectchange>option:selected").val();
 		//要查询的内容
-		var searchContent = (selectBy == "keyword") ? ($("#getKeyword").val()) : ($("#getType>option:selected").val());
+		searchContent = (selectBy == "keyword") ? ($("#getKeyword").val()) : ($("#getType>option:selected").val());
 		//发送请求搜索
-		$.post("user",{"selectBy":selectBy,"keyword":searchContent,"pageno":1},function(resq){
+		$.post("user",{"selectBy":selectBy,"content":searchContent,"pageno":1},function(resq){
 			eval("var page = " + resq);
 			pageno = page.pageno;	//当前页号，初始值为1
 			showResource(page);
