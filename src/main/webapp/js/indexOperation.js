@@ -44,7 +44,7 @@ showResource = function(page) {
 	for(var i = 0; i < datas.length; i++) {
 
 		resource += "<li><a href='"+datas[i].link+"' target='_blank'>"+datas[i].title+"</a>  ";
-		resource += "<input id='"+datas[i].id+"' type='button' value='"+(datas[i].isCollect) ? ("取消收藏") : ("收藏")+"' />  ";
+		resource += "<input id='"+datas[i].id+"' type='button' value='"+((datas[i].isCollect) ? ("取消收藏") : ("收藏"))+"' />  ";
 		resource += "<span id='"+datas[i].id+"_col'>"+datas[i].collect+"</span></li>";
 
 		$("#resource").append(resource);
@@ -143,9 +143,9 @@ $(function(){
 		//查询类型：关键字keyword或类别type
 		selectBy = $("#selectchange>option:selected").val();
 		//要查询的内容
-		var searchContent = (selectType == "keyword") ? ($("#getKeyword").val()) : ($("#getType>option:selected").val());
+		var searchContent = (selectBy == "keyword") ? ($("#getKeyword").val()) : ($("#getType>option:selected").val());
 		//发送请求搜索
-		$.post("user",{"selectBy":selectBy,"keyword":searchContent},function(resq){
+		$.post("user",{"selectBy":selectBy,"keyword":searchContent,"pageno":1},function(resq){
 			eval("var page = " + resq);
 			pageno = page.pageno;	//当前页号，初始值为1
 			showResource(page);
@@ -198,7 +198,7 @@ $(function(){
 			window.location = "login.html";
 		}
 	})
-	
-	
+
+
 })
 
