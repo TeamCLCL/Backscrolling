@@ -88,6 +88,24 @@ public class UserServlet extends HttpServlet {
             page = new Page(1, Integer.MAX_VALUE);
             totalsize = new ResourceDaoImpl().getResourceByType(type, page).size();
         }
+        // 用户是否登录，未登录不需要做任何处理
+        HttpSession session = request.getSession(false);
+        if(session != null && session.getAttribute("user") != null){
+            // 用户已登录，获取当前登录的用户对象
+            User user = (User)session.getAttribute("user");
+            // 获取用户收藏的资源
+            List userCollects = new ResourceDaoImpl().getUserCollects(user, page);
+            // 循环变量当前页面资源
+            for(int i = 0;i < list.size();++i){
+                Resource resource = list.get(i);
+                // 判断当前页面中资源用户是否收藏
+                if(userCollects.contains(resource)){
+                    // 若收藏，将isCollect属性修改为true
+                    resource.setIsCollect(true);
+                    list.set(i, resource);
+                }
+            }
+        }
         // 包装为页面对象
         page = new Page(pageno, totalsize, list);
         // 转换为Json字符串
