@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
             totalsize = new ResourceDaoImpl().getAllResource(page).size();
         }else if("keyword".equals(selectBy)){
             // 用户以关键字检索资源（分页查询）
-            String keyword = request.getParameter("keyword");
+            String keyword = request.getParameter("content");
             CriteriaResource cr = new CriteriaResource(keyword);
             // 获取对应页码的页面资源
             list = new ResourceDaoImpl().getResourceByKeyword(cr, page);
@@ -81,7 +81,7 @@ public class UserServlet extends HttpServlet {
             totalsize = new ResourceDaoImpl().getResourceByKeyword(cr, page).size();
         }else if("type".equals(selectBy)){
             // 用户以资源类别检索资源（分页查询）
-            Type type = new Type(request.getParameter("type"));
+            Type type = new Type(request.getParameter("content"));
             // 获取对应页码的页面资源
             list = new ResourceDaoImpl().getResourceByType(type, page);
             // 获取总资源数（让分页失效）
