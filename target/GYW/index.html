@@ -57,20 +57,19 @@
             </ul>
 
             <div class="search">
-                <select id="selectchange" name="selectType"  onchange="change()">
+                <select id="selectchange" name="selectType">
                     <option value="keyword">按关键字</option>
                     <option value="type">按类别</option>
                 </select>
-                <span id="keyword">
-                    <input id="s1" type="text" placeholder="请输入...">
-                    <button id="s2" >搜索</button>
+                <span id="keyword" style="display: inline">
+                    <input id="getKeyword" type="text" placeholder="请输入...">
                 </span>
-                <span id="type" >
-                    <select  id="33" class="type">
-                        <option value="keyword">按关键字</option>
-                        <option value="type">按类别</option>
+                <span id="type" style="display: none">
+                    <select id="getType">
+                        <option value="0" disabled selected>请选择类型...</option>
                     </select>
                 </span>
+                <button id="searchRes" >搜索</button>
             </div>
         </div>
     
