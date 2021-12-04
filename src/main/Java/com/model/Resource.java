@@ -12,6 +12,8 @@ public class Resource {
     private String link;
     // 收藏量
     private Integer collect;
+    // 是否被用户收藏
+    private boolean isCollect = false;
 
     public Resource() {
     }
@@ -55,6 +57,14 @@ public class Resource {
         this.collect = collect;
     }
 
+    public boolean getIsCollect() {
+        return isCollect;
+    }
+
+    public void setIsCollect(boolean collect) {
+        isCollect = collect;
+    }
+
     @Override
     public String toString() {
         return "Resource{" +
@@ -62,6 +72,7 @@ public class Resource {
                 ", title='" + title + '\'' +
                 ", link='" + link + '\'' +
                 ", collect=" + collect +
+                ", isCollect=" + isCollect +
                 '}';
     }
 }
