@@ -68,7 +68,7 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
      */
     @Override
     public List<Resource> getUserCollects(User user, Page page) {
-        String sql = "select * from t_resource where resource_id ="
+        String sql = "select * from t_resource where id in"
                         + " (select resource_id from t_user_collect where user_id = ?)"
                         + " order by collect desc limit ?,?";
         return getForBeanList(sql, user.getId(), (page.getPageno()-1)*page.getPagesize(), page.getPagesize());
