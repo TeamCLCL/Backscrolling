@@ -69,7 +69,10 @@ public class UserServlet extends HttpServlet {
             list = new ResourceDaoImpl().getAllResource(page);
             // 获取总资源数（让分页失效）
             page = new Page(1, Integer.MAX_VALUE);
-            totalsize = new ResourceDaoImpl().getAllResource(page).size();
+            List<Resource> resources = new ResourceDaoImpl().getAllResource(page);
+            if(resources != null){
+                totalsize = resources.size();
+            }
         }else if("keyword".equals(selectBy)){
             // 用户以关键字检索资源（分页查询）
             String keyword = request.getParameter("content");
@@ -78,7 +81,10 @@ public class UserServlet extends HttpServlet {
             list = new ResourceDaoImpl().getResourceByKeyword(cr, page);
             // 获取总资源数（让分页失效）
             page = new Page(1, Integer.MAX_VALUE);
-            totalsize = new ResourceDaoImpl().getResourceByKeyword(cr, page).size();
+            List<Resource> resources = new ResourceDaoImpl().getResourceByKeyword(cr, page);
+            if(resources != null){
+                totalsize = resources.size();
+            }
         }else if("type".equals(selectBy)){
             // 用户以资源类别检索资源（分页查询）
             Type type = new Type(request.getParameter("content"));
@@ -86,7 +92,10 @@ public class UserServlet extends HttpServlet {
             list = new ResourceDaoImpl().getResourceByType(type, page);
             // 获取总资源数（让分页失效）
             page = new Page(1, Integer.MAX_VALUE);
-            totalsize = new ResourceDaoImpl().getResourceByType(type, page).size();
+            List<Resource> resources = new ResourceDaoImpl().getResourceByType(type, page);
+            if(resources != null){
+                totalsize = resources.size();
+            }
         }
         // 用户是否登录，未登录不需要做任何处理
         HttpSession session = request.getSession(false);
@@ -94,15 +103,19 @@ public class UserServlet extends HttpServlet {
             // 用户已登录，获取当前登录的用户对象
             User user = (User)session.getAttribute("user");
             // 获取用户收藏的资源
-            List userCollects = new ResourceDaoImpl().getUserCollects(user, page);
+            List<Resource> userCollects = new ResourceDaoImpl().getUserCollects(user, page);
             // 循环变量当前页面资源
             for(int i = 0;i < list.size();++i){
                 Resource resource = list.get(i);
-                // 判断当前页面中资源用户是否收藏
-                if(userCollects != null && userCollects.contains(resource)){
-                    // 若收藏，将isCollect属性修改为true
-                    resource.setIsCollect(true);
-                    list.set(i, resource);
+                // 判断当前页面中资源用户是否已收藏
+                if(userCollects != null){
+                    for(int j = 0;j < userCollects.size();++j){
+                        if(userCollects.get(j).getId() == resource.getId()){
+                            // 若收藏，将isCollect属性修改为true
+                            resource.setIsCollect(true);
+                            list.set(i, resource);
+                        }
+                    }
                 }
             }
         }
@@ -142,9 +155,16 @@ public class UserServlet extends HttpServlet {
             List<Resource> list = new ResourceDaoImpl().getUserCollects(user, page);
             // 获取用户收藏的总资源数（让分页失效）
             page = new Page(1, Integer.MAX_VALUE);
-            Integer totalsize = new ResourceDaoImpl().getUserCollects(user, page).size();
+            List<Resource> collects = new ResourceDaoImpl().getUserCollects(user, page);
+            Integer totalsize = null;
+            if(collects != null){
+                totalsize = collects.size();
+            }
+            for(int i = 0;list != null && i < list.size();++i){
+                list.get(i).setIsCollect(true);
+            }
             // 将获取专业装入页面对象
-            page = new Page(pageno, page.getPagesize(), totalsize, list);
+            page = new Page(pageno, 5, totalsize, list);
             // 将获取的资源包装为json字符串
             String json = JsonUtil.toJson(page);
             // 将资源传送给前端
