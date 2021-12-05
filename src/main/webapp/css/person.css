@@ -108,13 +108,12 @@ header {
     border-left: 2px solid rgb(209, 61, 16);
     width: 790px;
     height: 100%;
-    padding-top: 80px;
 }
 
-.message  li{
-    margin-top: 40px;
-    margin-left: 150px;
-    width: 260px;
+.message li{
+    margin-top: 60px;
+    margin-left: 100px;
+    width: 400px;
     list-style: none;
     height: 40px;
     line-height: 40px;
@@ -122,13 +121,48 @@ header {
     font-weight: bold;
 }
 
+.btn input {
+    margin-top: 120px;
+    margin-left: 200px;
+    padding-left: 10px;
+    cursor: pointer;
+    outline: none;
+    width: 100px;
+    height: 34px;
+    background-color: #f74b57;
+    font-size: 14px;
+    color:#fff;
+    padding-right: 10px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
 .star{
     display: none;
     margin-top: 40px;
-    margin-left: 150px;
+    margin-left: 50px;
     height: 40px;
     line-height: 40px;
     font-size: 20px;
+}
+
+.star  div {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgb(187, 185, 185);
+    padding-bottom: 5px;
+}
+.star  .content {
+    border:none;
+}
+
+.star div input{
+    display: inline-block;
+    margin-left: 500px;
+    width: 100px;
+    border: 2px solid rgb(209, 61, 16);
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .history{
@@ -142,7 +176,8 @@ header {
 }
 
 .star .navigation {
-    margin-top: 80%;
+    margin-top: 8%;
+    margin-left: 8%;
 }
 
 .star ul li .jumpPage{
