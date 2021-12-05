@@ -123,17 +123,16 @@ header {
 }
 
 .star{
-    display: none; 
+    display: none;
     margin-top: 40px;
     margin-left: 150px;
-    width: 260px;
     height: 40px;
     line-height: 40px;
     font-size: 20px;
 }
 
 .history{
-    display: none; 
+    display: none;
     margin-top: 40px;
     margin-left: 150px;
     width: 260px;
@@ -142,3 +141,34 @@ header {
     font-size: 20px;
 }
 
+.star .navigation {
+    margin-top: 80%;
+}
+
+.star ul li .jumpPage{
+    width: 50px;
+    margin: 0 10px;
+    height: 34px;
+    border-radius: 20px;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.star ul li .Page{
+    padding-left: 10px;
+    cursor: pointer;
+    outline: none;
+    width: 100px;
+    height: 34px;
+    background-color: #f74b57;
+    font-size: 14px;
+    color:#fff;
+    padding-right: 10px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.star .Page:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
