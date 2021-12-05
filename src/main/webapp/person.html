@@ -49,8 +49,8 @@
                 <img src="images/defaultprofile.jpg" alt="" class="img">
                 <ul class="list">
                     <li><span class="iconfont">&#xe603;</span><button id="msgBtn">个人信息</button></li>
-                    <li><span class="iconfont">&#xe642;</span><button id="starBtn">浏览历史</button></li>
-                    <li><span class="iconfont">&#xe666;</span><button id="hisBtn">我的收藏</button></li>
+                    <li><span class="iconfont">&#xe642;</span><button id="starBtn">我的收藏</button></li>
+                    <li><span class="iconfont">&#xe666;</span><button id="hisBtn">浏览历史</button></li>
                 </ul>
                 <button class="btn1" id="resetBtn">修改密码</button>
                 <button class="btn2" id="logoutBtn">退出登录</button>
@@ -65,10 +65,14 @@
                         <li id="address">地 址：</li>
                         <li id="email">邮 箱：</li>
                     </ul>
+                    <span class="btn">
+                        <input type="button" id="modifyBtn" value="修改">
+                        <input type="button" id="saveBtn" value="保存">
+                    </span>
                 </div>
 
                 <div class="star" id="getStar">
-                    <div id="myStar">
+                    <div  class='content' id="myStar">
                     </div>
                     <ul id="navigation" class="navigation">
                         <li>
