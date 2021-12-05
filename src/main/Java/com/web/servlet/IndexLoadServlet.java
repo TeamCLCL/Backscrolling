@@ -61,7 +61,31 @@ public class IndexLoadServlet extends HttpServlet {
         // 资源数据
         List<Resource> list = new ResourceDaoImpl().getAllResource(page);
         // 资源总条数
-        Integer totalsize = list.size();
+        Integer totalsize = null;
+        if(list != null){
+            totalsize = list.size();
+        }
+        // 用户已登录，资源是否已被用户收藏
+        if(isLogin){
+            // 用户已登录，获取当前登录的用户对象
+            User user = (User)session.getAttribute("user");
+            // 获取用户收藏的资源
+            List<Resource> userCollects = new ResourceDaoImpl().getUserCollects(user, page);
+            // 循环变量当前页面资源
+            for(int i = 0;i < list.size();++i){
+                Resource resource = list.get(i);
+                // 判断当前页面中资源用户是否已收藏
+                if(userCollects != null){
+                    for(int j = 0;j < userCollects.size();++j){
+                        if(userCollects.get(j).getId() == resource.getId()){
+                            // 若收藏，将isCollect属性修改为true
+                            resource.setIsCollect(true);
+                            list.set(i, resource);
+                        }
+                    }
+                }
+            }
+        }
         // 将资源包装为对象
         page = new Page(1, totalsize, list);
         // 将对象转换为
