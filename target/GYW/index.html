@@ -29,11 +29,11 @@
             </div>
             <div class="rights">
                 <ul>
-                    <li><a href="person.html">我的收藏</a></li>
+                    <li><a href="person.html?htmlType=massage">个人信息</a></li>
                     <li></li>
-                    <li><a href="person.html">浏览历史</a></li>
+                    <li><a href="person.html?htmlType=star">我的收藏</a></li>
                     <li></li>
-                    <li><a href="person.html">个人信息</a></li>
+                    <li><a href="person.html?htmlType=history">浏览历史</a></li>
                     <li></li>
                     <li>网站导航</li>
                  </ul>
@@ -66,7 +66,7 @@
                 </span>
                 <span id="type" style="display: none">
                     <select id="getType">
-                        <option value="0" disabled selected>请选择类型...</option>
+                        <option class="getType" value="0" disabled selected>请选择类型...</option>
                     </select>
                 </span>
                 <button id="searchRes" >搜索</button>
@@ -120,16 +120,23 @@
             
         
             <div class="centent">
-                <ul id="resource">
-   
-                </ul>
+                <div id="resource" class="resource">
+
+                    
+                    
+
+                    
+                
+                  
+                    
+                </div>
                 <ul id="navigation" class="navigation">
                  <li>
-                    <input type='button' id='lastPage' value='上一页'>
+                    <input class="Page" type='button' id='lastPage' value='上一页'>
                     <span id='whichPage'></span>
-                    <input type='button' id='nextPage' value='下一页'>
-                    前往至第<input type='text' id='target'>页
-                    <input type='button' id='goto' value='点击前往'>
+                    <input class="Page" type='button' id='nextPage' value='下一页'>
+                    前往至第<input class="jumpPage" type='text' id='target'>页
+                    <input class="Page" type='button' id='goto' value='点击前往'>
                  </li>
                 </ul>
             </div>

@@ -77,9 +77,21 @@ header {
     color: rgb(209, 61, 16);
 }
 
-.btn{
+.btn1{
     outline: none;
     margin-top: 50px;
+    margin-left: 110px;
+    border: 1px solid #000;
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.btn2{
+    outline: none;
+    margin-top: 20px;
     margin-left: 110px;
     border: 1px solid #000;
     width: 180px;

@@ -43,9 +43,9 @@ showResource = function(page) {
 	$("#resource").html("");
 	for(var i = 0; i < datas.length; i++) {
 
-		resource += "<li><a href='"+datas[i].link+"' target='_blank'>"+datas[i].title+"</a>  ";
+		resource += "<div><a href='"+datas[i].link+"' target='_blank'><h3>"+datas[i].title+"</h3></a>";
 		resource += "<input id='"+datas[i].id+"' type='button' value='"+((datas[i].isCollect) ? ("取消收藏") : ("收藏"))+"' />  ";
-		resource += "<span id='"+datas[i].id+"_col'>"+datas[i].collect+"</span></li>";
+		resource += "<span id='"+datas[i].id+"_col'>"+datas[i].collect+"</span></div>";
 
 		$("#resource").append(resource);
 		resource = "";
@@ -198,7 +198,4 @@ $(function(){
 			window.location = "login.html";
 		}
 	})
-
-
 })
-
