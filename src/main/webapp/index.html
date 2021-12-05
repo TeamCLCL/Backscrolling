@@ -66,7 +66,7 @@
                 </span>
                 <span id="type" style="display: none">
                     <select id="getType">
-                        <option value="0" disabled selected>请选择类型...</option>
+                        <option class="getType" value="0" disabled selected>请选择类型...</option>
                     </select>
                 </span>
                 <button id="searchRes" >搜索</button>
@@ -120,16 +120,72 @@
             
         
             <div class="centent">
-                <ul id="resource">
-   
-                </ul>
+                <div id="resource" class="resource">
+
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    <div>
+                        <a href='"+datas[i].link+"' target='_blank'><h3>我是一个资源标题</h3></a>
+                        <input id='"+datas[i].id+"' type='button' value=取消收藏 />
+                        <span id='"+datas[i].id+"_col'>666</span>
+                    </div>
+                    
+
+                    
+                
+                  
+                    
+                </div>
                 <ul id="navigation" class="navigation">
                  <li>
-                    <input type='button' id='lastPage' value='上一页'>
+                    <input class="Page" type='button' id='lastPage' value='上一页'>
                     <span id='whichPage'></span>
-                    <input type='button' id='nextPage' value='下一页'>
-                    前往至第<input type='text' id='target'>页
-                    <input type='button' id='goto' value='点击前往'>
+                    <input class="Page" type='button' id='nextPage' value='下一页'>
+                    前往至第<input class="jumpPage" type='text' id='target'>页
+                    <input class="Page" type='button' id='goto' value='点击前往'>
                  </li>
                 </ul>
             </div>
