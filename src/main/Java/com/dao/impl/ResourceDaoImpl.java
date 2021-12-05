@@ -103,9 +103,4 @@ public class ResourceDaoImpl extends Dao<Resource> implements ResourceDao {
         String sql = "";
         update(sql);
     }
-
-    @Override
-    public Long getNum(String selectBy, String type) {
-        return null;
-    }
 }

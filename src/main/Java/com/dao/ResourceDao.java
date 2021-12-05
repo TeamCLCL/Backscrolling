@@ -54,12 +54,4 @@ public interface ResourceDao {
      * @return
      */
     void update(Integer id);
-
-    /**
-     * 获取不同检索类型的总资源数
-     * @param selectBy
-     * @param type
-     * @return
-     */
-    Long getNum(String selectBy, String type);
 }
