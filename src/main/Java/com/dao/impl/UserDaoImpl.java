@@ -119,7 +119,15 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
      * @return
      */
     @Override
-    public int updateMessage(User user) {
-        return 0;
+    public int updateMessage(User user, String ...args) {
+        if(args.length == 1){
+            // 上传图片
+            String sql = "update t_user set image = ? where id = ?";
+            return update(sql, args[0], user.getId());
+        }else{
+            // 更新个人信息
+            String sql = "update t_user set sex = ? and address = ? where id = ?";
+            return update(sql, args[0], args[1], user.getId());
+        }
     }
 }

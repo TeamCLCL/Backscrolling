@@ -68,5 +68,5 @@ public interface UserDao {
      * @param user
      * @return
      */
-    int updateMessage(User user);
+    int updateMessage(User user, String ...ages);
 }

@@ -134,7 +134,7 @@ public class UserServlet extends HttpServlet {
             Integer resource_id = Integer.valueOf(request.getParameter("resourceid"));
             // 用户收藏资源
             new UserDaoImpl().collect(user_id, resource_id);
-        }else if("select".equals(useroperres)){
+        }else if("usercollects".equals(useroperres)){
             // 获取页码
             Integer pageno = Integer.valueOf(request.getParameter("pageno"));
             Page page = new Page(pageno, 5);
@@ -162,14 +162,32 @@ public class UserServlet extends HttpServlet {
      * @param request
      * @param response
      */
-    private void useropermsg(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-
-    /**
-     * 用户修改个人信息
-     */
-    private void update(){
-
+    private void useropermsg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
+        // 判断用户的操作类型
+        String useropermsg = request.getParameter("useropermsg");
+        // 获取当前登录用户id
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        // 不同操作类型对应不同处理方式
+        if("msg".equals(useropermsg)){
+            // 获取用户个人信息对应的json字符串
+            String json = JsonUtil.toJson(user);
+            out.print(json);
+        }else if("history".equals(useropermsg)){
+            // 获取用户浏览历史
+            // 功能待开发
+        }else if("upimage".equals(useropermsg)){
+            // 上传图片
+            // 获取新图片路径
+            String image = request.getParameter("image");
+            new UserDaoImpl().updateMessage(user, image);
+        }else if("update".equals(useropermsg)){
+            // 修改个人信息
+            // 获取性别和地址
+            String sex = request.getParameter("sex");
+            String address = request.getParameter("address");
+            new UserDaoImpl().updateMessage(user, sex, address);
+        }
     }
 }
