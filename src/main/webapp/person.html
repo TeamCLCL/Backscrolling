@@ -43,43 +43,48 @@
     <div class="w">
         <header></header>
         <div class="mainarea">
+            
             <!-- 信息区域 -->
-            <div class="index">
-                <img src="images/defaultprofile.jpg" alt="" class="img">
-                <ul class="list">
-                    <li><span class="iconfont">&#xe603;</span><button id="msgBtn">个人信息</button></li>
-                    <li><span class="iconfont">&#xe642;</span><button id="starBtn">我的收藏</button></li>
-                    <li><span class="iconfont">&#xe666;</span><button id="hisBtn">浏览历史</button></li>
-                </ul>
-                <button class="btn1" id="resetBtn">修改密码</button>
-                <button class="btn2" id="logoutBtn">退出登录</button>
-            </div>
-            <!-- 具体区域 -->
-            <div class="information">
-                <div id="getMessage">
-                    <ul class="message" >
-                        <li id="name">昵 称：</li>
-                        <li id="sex">性 别：</li>
-                        <li id="address">地 址：</li>
-                        <li id="email">邮 箱：</li>
-                    </ul>
-                </div>
-                <div class="star" id="getStar">
-                    <div id="myStar">
-                    </div>
-                    <ul id="navigation" class="navigation">
-                        <li>
-                           <input class="Page" type='button' id='lastPage' value='上一页'>
-                           <span id='whichPage'></span>
-                           <input class="Page" type='button' id='nextPage' value='下一页'>
-                           前往至第<input class="jumpPage" type='text' id='target'>页
-                           <input class="Page" type='button' id='goto' value='点击前往'>
-                        </li>
-                    </ul>
-                </div>
-                <div class="history" id="getHistory">
+            <div class="index">
+                <img src="images/defaultprofile.jpg" alt="" class="img">
+                <ul class="list">
+                    <li><span class="iconfont">&#xe603;</span><button id="msgBtn">个人信息</button></li>
+                    <li><span class="iconfont">&#xe642;</span><button id="starBtn">浏览历史</button></li>
+                    <li><span class="iconfont">&#xe666;</span><button id="hisBtn">我的收藏</button></li>
+                </ul>
+                <button class="btn1" id="resetBtn">修改密码</button>
+                <button class="btn2" id="logoutBtn">退出登录</button>
+            </div>
 
+            <!-- 具体区域 -->
+            <div class="information">
+                <div id="getMessage">
+                    <ul class="message" >
+                        <li id="name">昵 称：</li>
+                        <li id="sex">性 别：</li>
+                        <li id="address">地 址：</li>
+                        <li id="email">邮 箱：</li>
+                    </ul>
                 </div>
+
+                <div class="star" id="getStar">
+                    <div id="myStar">
+                    </div>
+                    <ul id="navigation" class="navigation">
+                        <li>
+                            <input class="Page" type='button' id='lastPage' value='上一页'>
+                            <span id='whichPage'></span>
+                            <input class="Page" type='button' id='nextPage' value='下一页'>
+                            前往至第<input class="jumpPage" type='text' id='target'>页
+                            <input class="Page" type='button' id='goto' value='点击前往'>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="history" id="getHistory">
+                     
+                </div>
+
             </div>
         </div>
     </div>
