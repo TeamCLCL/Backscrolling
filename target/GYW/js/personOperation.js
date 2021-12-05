@@ -58,7 +58,7 @@ toSomePage = function(toWhich) {
 		$("#lastPage").attr("disabled",false);
 		$("#nextPage").attr("disabled",false);
 		//展示资源
-		showResource(page);
+		show(page);
 	},"text");
 }
 
