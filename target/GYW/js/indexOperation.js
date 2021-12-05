@@ -99,12 +99,10 @@ $(function(){
 		if(json[0].isLogin) {
 			//已登录
 			status = 1;
-			$("#msg").text(json[0].username + "，欢迎您，点此");
 			$("#loginStatus").val("退出登录");
 		} else {
 			//未登录
 			status = 0;
-			$("#msg").text("欢迎您，点此");
 			$("#loginStatus").val("登录");
 		}
 		//第一次访问index页面的时候展示第一页资源
@@ -186,16 +184,22 @@ $(function(){
 		//如果是未登录状态，接下来要跳转到登陆页面进行登陆
 		//如果是登陆状态，接下来要退出登陆，退出后留在原页
 		if (status == 1) {
-			$.ajax({
-				"url":"logout",
-				"type":"post",
-				"data":{"type":'logout'}
-			});
-			status = 0;
-			$("#msg").text("欢迎您，点此");
-			$("#loginStatus").val("登录");
+			if (confirm("是否要退出登录?")) {
+				$.ajax({
+					"url":"logout",
+					"type":"post",
+					"data":{"type":'logout'}
+				});
+				window.location = "index.html";
+			}
 		} else {
 			window.location = "login.html";
+		}
+	})
+
+	$(".rights ul li a").click(function(){
+		if (!checkStatus()) {
+			$(".rights ul li a").attr("href","login.html");
 		}
 	})
 })
