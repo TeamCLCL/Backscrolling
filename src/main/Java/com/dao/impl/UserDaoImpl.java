@@ -80,6 +80,17 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
     }
 
     /**
+     * 获取id对应的用户对象
+     * @param user_id
+     * @return
+     */
+    @Override
+    public User getUser(Integer user_id) {
+        String sql = "select * from t_user where id = ?";
+        return getForObj(sql, user_id);
+    }
+
+    /**
      * 管理员查询所有用户
      * @return
      */
@@ -126,8 +137,8 @@ public class UserDaoImpl extends Dao<User> implements UserDao {
             return update(sql, args[0], user.getId());
         }else{
             // 更新个人信息
-            String sql = "update t_user set sex = ? and address = ? where id = ?";
-            return update(sql, args[0], args[1], user.getId());
+            String sql = "update t_user set name = ? , sex = ? , address = ? where id = ?";
+            return update(sql, args[0], args[1], args[2], user.getId());
         }
     }
 }

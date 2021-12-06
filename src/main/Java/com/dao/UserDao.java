@@ -42,6 +42,13 @@ public interface UserDao {
     int resetPassword(User user);
 
     /**
+     * 获取id对应的用户对象
+     * @param user_id
+     * @return
+     */
+    User getUser(Integer user_id);
+
+    /**
      * 管理员查询所有用户
      * @return
      */

@@ -1,5 +1,6 @@
 package com.web.servlet;
 
+import com.dao.UserDao;
 import com.dao.impl.ResourceDaoImpl;
 import com.dao.impl.UserDaoImpl;
 import com.model.*;
@@ -204,10 +205,21 @@ public class UserServlet extends HttpServlet {
             new UserDaoImpl().updateMessage(user, image);
         }else if("update".equals(useropermsg)){
             // 修改个人信息
-            // 获取性别和地址
+            // 获取更新的用户名、性别、地址
+            String name = request.getParameter("name");
             String sex = request.getParameter("sex");
             String address = request.getParameter("address");
-            new UserDaoImpl().updateMessage(user, sex, address);
+            // 返回更新的数据条数
+            int flag = new UserDaoImpl().updateMessage(user, name, sex, address);
+            // 更新保存到session中的用户对象
+            session.removeAttribute("user");
+            session.setAttribute("user", new UserDaoImpl().getUser(user.getId()));
+            // 告知前端是否保存成功
+            if(flag == 1){
+                out.print("{updateSuccess : true}");
+            }else{
+                out.print("{updateSuccess : false}");
+            }
         }
     }
 }
