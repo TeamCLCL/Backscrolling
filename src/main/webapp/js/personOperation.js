@@ -36,6 +36,8 @@ show = function(page) {
 	}
 
 	$("#whichPage").text(pageno+"/"+maxpageno);
+	$("#lastPage").attr("disabled",false);
+	$("#nextPage").attr("disabled",false);
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
 		$("#lastPage").attr("disabled",true);
@@ -201,13 +203,13 @@ $(function(){
 			}
 			
 			//将原本的内容位置变为可更改的
-			$("#name").html("昵 称：<input type='text' value='"+originalName+"' id='setName' class='setName'>" +
-									"<span type='text' value='' id='nameMsg'>");
-			$("#sex").html("性 别：<input type='radio' value='男' name='sex' id='M'>男" +
-									"     <input type='radio' value='女' name='sex' id='F'>女");
-			$("#address").html("地 址：<input type='text' value='"+originalAddress+"' id='setAddress'>" + 
+			$("#name").html("昵 称：<input type='text' value='"+originalName+"' id='setName' class='set'>" +
+								"<span type='text' value='' id='nameMsg'>");
+			$("#sex").html("性 别：<input type='radio' value='男' name='sex' id='M' class='sex'>男" +
+									"     <input type='radio' value='女' name='sex' id='F' class='sex'>女");
+			$("#address").html("地 址：<input type='text' value='"+originalAddress+"' id='setAddress' class='set'>" + 
 									"<span type='text' value='' id='addressMsg'>");
-			$("#email").html("邮 箱：<input type='text' value='"+originalEmail+"' id='setEmail' disabled>");
+			$("#email").html("邮 箱：<input type='text' value='"+originalEmail+"' id='setEmail' disabled class='set'>");
 			//初始化性别的值
 			if (originalSex == '女') {
 				$("#F").attr("checked",true);
