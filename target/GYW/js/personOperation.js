@@ -85,11 +85,14 @@ getMyMsg = function() {
 	$.post("user",{"useropermsg":"msg"},function(resq){
 		eval("var msg = " + resq);
 		//展示个人信息
-		$("#name").append(msg.name);
-		$("#sex").append(msg.sex);
-		$("#address").append(msg.address);
-		$("#email").append(msg.email);
+		$("#name").html("昵 称：" + msg.name);
+		$("#sex").html("性 别：" + (msg.sex == null ? "未填写" : msg.sex));
+		$("#address").html("地 址：" + (msg.address == null ? "未填写" : msg.address));
+		$("#email").html("邮 箱：" + msg.email);
 	},"text");
+
+	$("#modifyBtn").attr("disabled",false);
+	$("#saveBtn").attr("disabled",true);
 }
 
 getMyHistory = function() {
@@ -183,4 +186,113 @@ $(function(){
 			$(".rights ul li a").attr("href","login.html");
 		}
 	})
+	
+	$("#modifyBtn").click(function(){
+		//修改个人信息
+		if (confirm("是否要修改个人信息？")) {
+			//得到原本的昵称、性别、地址、邮箱
+			originalName = $("#name").text().split("：")[1];
+			originalSex = $("#sex").text().split("：")[1];
+			originalAddress = $("#address").text().split("：")[1];
+			originalEmail = $("#email").text().split("：")[1];
+
+			if (originalAddress == "未填写") {
+				originalAddress = "";
+			}
+			
+			//将原本的内容位置变为可更改的
+			$("#name").html("昵 称：<input type='text' value='"+originalName+"' id='setName'>" +
+									"<span type='text' value='' id='nameMsg'>");
+			$("#sex").html("性 别：<input type='radio' value='男' name='sex' id='M'>男" +
+									"     <input type='radio' value='女' name='sex' id='F'>女");
+			$("#address").html("地 址：<input type='text' value='"+originalAddress+"' id='setAddress'>" + 
+									"<span type='text' value='' id='addressMsg'>");
+			$("#email").html("邮 箱：<input type='text' value='"+originalEmail+"' id='setEmail' disabled>");
+			//初始化性别的值
+			if (originalSex == '女') {
+				$("#F").attr("checked",true);
+			} else if(originalSex == '男') {
+				$("#M").attr("checked",true);
+			}
+
+			//为用户名和地址绑定验证事件
+			bindName();
+			bindAddress();
+
+			$("#modifyBtn").attr("disabled",true);
+			$("#saveBtn").attr("disabled",false);
+		}
+	})
+	
+	//保存修改信息
+	$("#saveBtn").click(function(){
+		if (($("#nameMsg").text() == "√" || $("#nameMsg").text() == "") && 
+				($("#nameMsg").text() == "√" || $("#nameMsg").text() == "") && 
+				$(":radio:checked").val() != undefined) {
+			if (confirm("是否要保存修改信息？")) {
+				var data = {
+					"useropermsg" : "update",
+					"name" : $("#setName").val(),
+					"sex" : $(":radio:checked").val(),
+					"address" : $("#setAddress").val()
+				}
+				$.post("user",data,function(resq) {
+					eval("var saveSuc = " + resq);
+					if (saveSuc.updateSuccess) {
+						alert("保存成功");
+						getMyMsg();
+					}
+				},"text")
+				$("#modifyBtn").attr("disabled",false);
+				$("#saveBtn").attr("disabled",true);
+			}
+		} else {
+			alert("请完善个人信息并按要求填写");
+		}
+	})
 })
+
+bindName = function() {
+	//验证用户名是否合法
+	$("#setName").on("blur",function() {
+		var newName = this.value.trim();
+		var reg = /^([a-zA-Z]|[0-9]|[\u4e00-\u9fa5]){2,8}$/;
+		if (newName == originalName) {
+			$("#nameMsg").text("√");	//用户名未修改
+		} else if (newName == "") {
+			$("#nameMsg").text("用户名不能为空");
+		} else if (!reg.test(newName)) {
+			$("#nameMsg").text("用户名由2-8位的中文、英语字母或数字构成");
+		} else {
+			//此时用户名已合法
+			//接下来验证用户名是否已被占用
+			$.post("checkname",{"user":newName},function(resq){
+				eval("var json = " + resq);
+				if(json.nameRepeat) {
+					//表示用户名重复
+					$("#nameMsg").text("该用户名已被占用");
+				} else {
+					//用户名可用
+					$("#nameMsg").text("√");
+				}
+			},"text")
+		}
+	})
+}
+
+bindAddress = function() {
+	//验证地址的长度
+	$("#setAddress").on("blur",function() {
+		var newAddress = this.value.trim();
+		var reg = /^([a-zA-Z]|[0-9]|[\u4e00-\u9fa5]){2,16}$/;
+		if (newAddress == originalAddress) {
+			$("#addressMsg").text("√");	//地址未修改
+		} else if (newAddress == "") {
+			$("#addressMsg").text("地址不能为空");
+		} else if (!reg.test(newAddress)) {
+			$("#addressMsg").text("地址由2-16位的中文、英语字母或数字构成");
+		} else {
+			$("#addressMsg").text("√");
+		}
+	})
+}
