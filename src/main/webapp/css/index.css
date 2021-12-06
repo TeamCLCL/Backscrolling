@@ -201,7 +201,7 @@ header {
 
 .centent .resource div input{
     display: inline-block;
-    margin-left: 600px;
+    margin-left: 670px;
     width: 100px;
     border: 2px solid rgb(209, 61, 16);
     cursor: pointer;
@@ -215,7 +215,7 @@ header {
 
 .centent .resource div span{
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 25px;
 }
 
 
@@ -225,7 +225,7 @@ header {
 .centent .navigation {
     position: relative;
     top: 7%;
-    left: 12%;
+    left: 18%;
 
 }
 

@@ -45,7 +45,7 @@ showResource = function(page) {
 
 		resource += "<div><a href='"+datas[i].link+"' target='_blank'><h3>"+datas[i].title+"</h3></a>";
 		resource += "<input id='"+datas[i].id+"' type='button' value='"+((datas[i].isCollect) ? ("取消收藏") : ("收藏"))+"' />  ";
-		resource += "<span id='"+datas[i].id+"_col'>"+datas[i].collect+"</span></div>";
+		resource += "<span id='"+datas[i].id+"_col'> 收藏量: "+datas[i].collect+"</span></div>";
 
 		$("#resource").append(resource);
 		resource = "";
