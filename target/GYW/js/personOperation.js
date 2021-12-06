@@ -201,7 +201,7 @@ $(function(){
 			}
 			
 			//将原本的内容位置变为可更改的
-			$("#name").html("昵 称：<input type='text' value='"+originalName+"' id='setName'>" +
+			$("#name").html("昵 称：<input type='text' value='"+originalName+"' id='setName' class='setName'>" +
 									"<span type='text' value='' id='nameMsg'>");
 			$("#sex").html("性 别：<input type='radio' value='男' name='sex' id='M'>男" +
 									"     <input type='radio' value='女' name='sex' id='F'>女");

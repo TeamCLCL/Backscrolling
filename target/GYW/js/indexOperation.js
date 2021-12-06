@@ -54,6 +54,8 @@ showResource = function(page) {
 	}
 
 	$("#whichPage").text(pageno+"/"+maxpageno);
+	$("#lastPage").attr("disabled",false);
+	$("#nextPage").attr("disabled",false);
 	if(pageno == 1) {
 		//第一页无法点击上一页按钮
 		$("#lastPage").attr("disabled",true);
@@ -141,7 +143,7 @@ $(function(){
 		//查询类型：关键字keyword或类别type
 		selectBy = $("#selectchange>option:selected").val();
 		//要查询的内容
-		searchContent = (selectBy == "keyword") ? ($("#getKeyword").val()) : ($("#getType>option:selected").val());
+		searchContent = (selectBy == "keyword") ? ($("#getKeyword").val()) : ($("#getType>option:selected").text());
 		//发送请求搜索
 		$.post("user",{"selectBy":selectBy,"content":searchContent,"pageno":1},function(resq){
 			eval("var page = " + resq);
