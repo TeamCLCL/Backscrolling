@@ -113,13 +113,30 @@ header {
 .message li{
     margin-top: 60px;
     margin-left: 100px;
-    width: 400px;
     list-style: none;
     height: 40px;
     line-height: 40px;
     font-size: 20px;
     font-weight: bold;
 }
+
+.message li .set{
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 20px;
+    outline: none;
+}
+
+.message li .sex{
+    margin-left: 30px;
+}
+
+.message li span{
+    font-size: 16px;
+    color: #ccc;
+    margin-left: 20px;
+}
+
 
 .btn input {
     margin-top: 120px;
