@@ -90,6 +90,9 @@ getMyMsg = function() {
 		$("#address").html("地 址：" + (msg.address == null ? "未填写" : msg.address));
 		$("#email").html("邮 箱：" + msg.email);
 	},"text");
+
+	$("#modifyBtn").attr("disabled",false);
+	$("#saveBtn").attr("disabled",true);
 }
 
 getMyHistory = function() {
@@ -192,25 +195,32 @@ $(function(){
 			originalSex = $("#sex").text().split("：")[1];
 			originalAddress = $("#address").text().split("：")[1];
 			originalEmail = $("#email").text().split("：")[1];
+
+			if (originalAddress == "未填写") {
+				originalAddress = "";
+			}
 			
 			//将原本的内容位置变为可更改的
 			$("#name").html("昵 称：<input type='text' value='"+originalName+"' id='setName'>" +
 									"<span type='text' value='' id='nameMsg'>");
-			$("#sex").html("性 别：<input type='radio' value='M' name='sex' id='M'>男" + 
-									"<input type='radio' value='F' name='sex' id='F'>女");
+			$("#sex").html("性 别：<input type='radio' value='男' name='sex' id='M'>男" +
+									"     <input type='radio' value='女' name='sex' id='F'>女");
 			$("#address").html("地 址：<input type='text' value='"+originalAddress+"' id='setAddress'>" + 
 									"<span type='text' value='' id='addressMsg'>");
 			$("#email").html("邮 箱：<input type='text' value='"+originalEmail+"' id='setEmail' disabled>");
 			//初始化性别的值
-			if (originalSex == 'F') {
+			if (originalSex == '女') {
 				$("#F").attr("checked",true);
-			} else if(originalSex == 'M') {
+			} else if(originalSex == '男') {
 				$("#M").attr("checked",true);
 			}
 
 			//为用户名和地址绑定验证事件
 			bindName();
 			bindAddress();
+
+			$("#modifyBtn").attr("disabled",true);
+			$("#saveBtn").attr("disabled",false);
 		}
 	})
 	
@@ -233,6 +243,8 @@ $(function(){
 						getMyMsg();
 					}
 				},"text")
+				$("#modifyBtn").attr("disabled",false);
+				$("#saveBtn").attr("disabled",true);
 			}
 		} else {
 			alert("请完善个人信息并按要求填写");
