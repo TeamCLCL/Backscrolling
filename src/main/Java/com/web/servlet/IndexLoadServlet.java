@@ -60,10 +60,13 @@ public class IndexLoadServlet extends HttpServlet {
         // 查询数据库，加载第一页的资源
         // 资源数据
         List<Resource> list = new ResourceDaoImpl().getAllResource(page);
+        // 获取总资源数（让分页失效）
+        page = new Page(1, Integer.MAX_VALUE);
+        List<Resource> resources = new ResourceDaoImpl().getAllResource(page);
         // 资源总条数
         Integer totalsize = null;
         if(list != null){
-            totalsize = list.size();
+            totalsize = resources.size();
         }
         // 用户已登录，资源是否已被用户收藏
         if(isLogin){
