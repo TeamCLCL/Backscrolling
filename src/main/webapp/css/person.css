@@ -157,7 +157,7 @@ header {
 
 .star div input{
     display: inline-block;
-    margin-left: 500px;
+    margin-left: 600px;
     width: 100px;
     border: 2px solid rgb(209, 61, 16);
     cursor: pointer;
@@ -176,8 +176,8 @@ header {
 }
 
 .star .navigation {
-    margin-top: 8%;
-    margin-left: 8%;
+    margin-top: 5%;
+    margin-left: 12%;
 }
 
 .star ul li .jumpPage{
