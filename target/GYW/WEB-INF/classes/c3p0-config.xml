@@ -4,7 +4,7 @@
     <named-config name="gyw">
         <!-- 指定连接数据源的基本信息 -->
         <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql://1.14.241.25:3306/GYW</property>
+        <property name="jdbcUrl">jdbc:mysql://1.14.241.25:3306/gyw</property>
         <property name="user">root</property>
         <property name="password">@Lin202754</property>
 
